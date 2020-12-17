@@ -1,0 +1,6 @@
+C:\Work\Code\Civil3D.CustomNodes\bin\Debug\Civil3D_CustomNodes.xml
+C:\Work\Code\Civil3D.CustomNodes\bin\Debug\Civil3D_CustomNodes.dll
+C:\Work\Code\Civil3D.CustomNodes\bin\Debug\Civil3D_CustomNodes.pdb
+C:\Work\Code\Civil3D.CustomNodes\obj\Debug\Civil3D_CustomNodes.csproj.CoreCompileInputs.cache
+C:\Work\Code\Civil3D.CustomNodes\obj\Debug\Civil3D_CustomNodes.dll
+C:\Work\Code\Civil3D.CustomNodes\obj\Debug\Civil3D_CustomNodes.pdb
