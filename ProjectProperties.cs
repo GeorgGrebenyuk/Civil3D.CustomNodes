@@ -97,9 +97,9 @@ namespace Civil3D_DrawingProperties
 					Units_Window.AmbientSettings.Angle.Unit.Value = Autodesk.Civil.AngleUnitType.Degree;// 179;
 					Units_Window.AmbientSettings.Direction.Unit.Value = Autodesk.Civil.AngleUnitType.Degree;// 179;
 					Units_Window.AmbientSettings.LatLong.Unit.Value = Autodesk.Civil.AngleUnitType.Degree;// 179;
-					Units_Window.AmbientSettings.Grade.Format.Value = Autodesk.Civil.GradeFormatType.Decimal;// 2468;
-					Units_Window.AmbientSettings.Slope.Format.Value = Autodesk.Civil.SlopeFormatType.RiseRun;// 2465;
-					Units_Window.AmbientSettings.GradeSlope.Format.Value = Autodesk.Civil.GradeSlopeFormatType.Decimal;// 2468;
+					Units_Window.AmbientSettings.Grade.Format.Value = Autodesk.Civil.GradeFormatType.PerMille;// 2476;
+					Units_Window.AmbientSettings.Slope.Format.Value = Autodesk.Civil.SlopeFormatType.RiseRun;// 2466;
+					Units_Window.AmbientSettings.GradeSlope.Format.Value = Autodesk.Civil.GradeSlopeFormatType.PerMille;// 2476;
 					Units_Window.AmbientSettings.Station.Unit.Value = Autodesk.Civil.LinearUnitType.Meter;// 2;
 					Units_Window.AmbientSettings.Acceleration.Unit.Value = Autodesk.Civil.AccelerationUnitType.MeterPerSecSquared;// 202;
 					Units_Window.AmbientSettings.Pressure.Unit.Value = Autodesk.Civil.PressureUnitType.Kilopascal;// 240;
@@ -130,9 +130,9 @@ namespace Civil3D_DrawingProperties
 					Units_Window.AmbientSettings.Angle.Unit.Value = Autodesk.Civil.AngleUnitType.Degree;// 179;
 					Units_Window.AmbientSettings.Direction.Unit.Value = Autodesk.Civil.AngleUnitType.Degree;// 179;
 					Units_Window.AmbientSettings.LatLong.Unit.Value = Autodesk.Civil.AngleUnitType.Degree;// 179;
-					Units_Window.AmbientSettings.Grade.Format.Value = Autodesk.Civil.GradeFormatType.Percent;// 2467;
-					Units_Window.AmbientSettings.Slope.Format.Value = Autodesk.Civil.SlopeFormatType.RunRise;// 2466;
-					Units_Window.AmbientSettings.GradeSlope.Format.Value = Autodesk.Civil.GradeSlopeFormatType.Percent;// 2467;
+					Units_Window.AmbientSettings.Grade.Format.Value = Autodesk.Civil.GradeFormatType.PerMille;// 2476;
+					Units_Window.AmbientSettings.Slope.Format.Value = Autodesk.Civil.SlopeFormatType.RiseRun;// 2466;
+					Units_Window.AmbientSettings.GradeSlope.Format.Value = Autodesk.Civil.GradeSlopeFormatType.PerMille;// 2476;
 					Units_Window.AmbientSettings.Station.Unit.Value = Autodesk.Civil.LinearUnitType.Foot;// 2;
 					Units_Window.AmbientSettings.Acceleration.Unit.Value = Autodesk.Civil.AccelerationUnitType.FootPerSecSquared;// 203;
 					Units_Window.AmbientSettings.Pressure.Unit.Value = Autodesk.Civil.PressureUnitType.PoundPerSquareInch;// 242;
