@@ -4,7 +4,28 @@
   "Description": null,
   "Name": "CreateTextLabels",
   "ElementResolver": {
-    "ResolutionMap": {}
+    "ResolutionMap": {
+      "Point": {
+        "Key": "Autodesk.DesignScript.Geometry.Point",
+        "Value": "ProtoGeometry.dll"
+      },
+      "Geometry.Point": {
+        "Key": "Autodesk.DesignScript.Geometry.Point",
+        "Value": "ProtoGeometry.dll"
+      },
+      "Autodesk.DesignScript.Geometry.Point": {
+        "Key": "Autodesk.DesignScript.Geometry.Point",
+        "Value": "ProtoGeometry.dll"
+      },
+      "Autodesk.AutoCAD.DynamoNodes.MText": {
+        "Key": "Autodesk.AutoCAD.DynamoNodes.MText",
+        "Value": "AutoCADNodes.dll"
+      },
+      "Autodesk.AutoCAD.DynamoNodes.MText.Create": {
+        "Key": "Autodesk.AutoCAD.DynamoNodes.MText",
+        "Value": "AutoCADNodes.dll"
+      }
+    }
   },
   "Inputs": [],
   "Outputs": [],
@@ -125,11 +146,11 @@
       "SelectedIndex": 1,
       "SelectedString": "По центру",
       "NodeType": "ExtensionNode",
-      "Id": "601302fd53a046889dc2c1d9cf8f4cff",
+      "Id": "4c42c0f26bef45f2b8ae30b20ed3f942",
       "Inputs": [],
       "Outputs": [
         {
-          "Id": "ee5d341a95a54447accfa92fd4bb2f0e",
+          "Id": "ee7e598f035048598e08df574bce435a",
           "Name": "Horizontal Attachment",
           "Description": "string",
           "UsingDefaultValue": false,
@@ -146,11 +167,11 @@
       "SelectedIndex": 1,
       "SelectedString": "Посередине",
       "NodeType": "ExtensionNode",
-      "Id": "186b46fd64524ebfb5758b53016f0207",
+      "Id": "ffe0dd9e4873473fa5e37dd7ca7d83b0",
       "Inputs": [],
       "Outputs": [
         {
-          "Id": "ff82c4a5a200485fb96916407eb3e574",
+          "Id": "233a48b8e09849ac8f778717e6cef37d",
           "Name": "Vertical Attachment",
           "Description": "string",
           "UsingDefaultValue": false,
@@ -165,14 +186,23 @@
     {
       "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
       "NodeType": "CodeBlockNode",
-      "Code": "\"0\";",
-      "Id": "05523595664747529be23932674d38c0",
+      "Code": "200;\n\"0\";",
+      "Id": "dd007ba90c3c422eb940fc533f654f79",
       "Inputs": [],
       "Outputs": [
         {
-          "Id": "21af6502e8b24499af4b703a3d62c0f0",
+          "Id": "a4b82cf97efa49798bdcfe4517404c1e",
           "Name": "",
           "Description": "Значение выражения в строке 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "1ceadc685ac44fefb969cfd286f86640",
+          "Name": "",
+          "Description": "Значение выражения в строке 2",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -186,11 +216,11 @@
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
       "NodeType": "FunctionNode",
       "FunctionSignature": "Autodesk.AutoCAD.DynamoNodes.Document.Current",
-      "Id": "8a4bbdd6c19d41ee94bc86efe6a2e507",
+      "Id": "e4fc47e455e046d4834ab6719e0ab172",
       "Inputs": [],
       "Outputs": [
         {
-          "Id": "5c168863bee44c26ba2bf85218461d0d",
+          "Id": "ea763d041663416c92ff9bdb5cd3c5bb",
           "Name": "Document",
           "Description": "Document",
           "UsingDefaultValue": false,
@@ -205,11 +235,11 @@
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
       "NodeType": "FunctionNode",
-      "FunctionSignature": "Autodesk.AutoCAD.DynamoNodes.Document.Blocks",
-      "Id": "c98dab5f3b494ddf83f03d45d014d29c",
+      "FunctionSignature": "Autodesk.AutoCAD.DynamoNodes.Document.ModelSpace",
+      "Id": "de9fe2610ca94924a474bf562a525dd3",
       "Inputs": [
         {
-          "Id": "2ad6451282a045cba6669d925668908c",
+          "Id": "77b13ca24a5f490eab8031937287ccd0",
           "Name": "document",
           "Description": "Autodesk.AutoCAD.DynamoNodes.Document",
           "UsingDefaultValue": false,
@@ -220,9 +250,9 @@
       ],
       "Outputs": [
         {
-          "Id": "b15df154a7d946e0b8a7840902f92652",
-          "Name": "Block[]",
-          "Description": "Block[]",
+          "Id": "69dab243b3ad43499716acc9a1bec8a1",
+          "Name": "Block",
+          "Description": "Block",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -230,16 +260,139 @@
         }
       ],
       "Replication": "Auto",
-      "Description": "Получение всех записей таблицы блоков из текущего документа.\n\nDocument.Blocks: Block[]"
+      "Description": "Получение записи таблицы блоков пространства модели.\n\nDocument.ModelSpace: Block"
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "NodeType": "PythonScriptNode",
+      "Code": "#Initial parameters\r\nX_Start = IN[0]\r\nY_Start = IN[1]\r\nHoriz_Size = IN[2]\r\nVert_Size = IN[3]\r\nSizeOfSquare = IN[4]\r\n# Outputs arrays\r\nText_List = list()\r\nPoints_List = list()\r\n\r\n#Ayxilary function\r\ndef GetOneCoordStr(value):\r\n\tif value<10:\r\n\t\tStrFinish = '0' + str(value)\r\n\telif value==0:\r\n\t\tStrFinish = '00'\r\n\telse:\r\n\t\tStrFinish = str(value)\r\n\treturn StrFinish\r\n\r\n#Function to getting text value\r\ndef GetStrCoordFromNum (x_value,y_value):\r\n\treturn str(GetOneCoordStr(x_value)) + str(GetOneCoordStr(y_value))\r\n\r\nfor CoordX in range(0,Horiz_Size):\r\n\tfor CoordY in range(0,Vert_Size):\r\n\t\tText_List.append(GetStrCoordFromNum(CoordY,CoordX))\r\n\t\tPoints_List.append(str(X_Start+CoordX*SizeOfSquare) + ',' + str(Y_Start+CoordY*SizeOfSquare) + ',' + str(0))\r\n\t\tCoordY+=1\r\n\tCoordX+=1\r\n\r\nToExport = list()\r\nToExport.append(Text_List)\r\nToExport.append(Points_List)\r\n# Assign your output to the OUT variable.\r\nOUT = ToExport",
+      "VariableInputPorts": true,
+      "Id": "b9b0e314a4044213a37d64d7dc4f4fe6",
+      "Inputs": [
+        {
+          "Id": "ec8cfcd1989044de89279a2dbe87d07a",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "9044370a14044115870d6461ddd50e48",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "647421b72e1349abb28cdc576d737d89",
+          "Name": "IN[2]",
+          "Description": "Input #2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "88c84955a18543bcb60e757758bd3abe",
+          "Name": "IN[3]",
+          "Description": "Input #3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "28c3b77add234752bfa70e928696f892",
+          "Name": "IN[4]",
+          "Description": "Input #4",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "263f00190b0040208f832718cc68035b",
+          "Name": "OUT",
+          "Description": "Результат сценария Python",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Выполнение встроенного сценария IronPython."
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
       "NodeType": "CodeBlockNode",
-      "Code": "a[0];",
-      "Id": "a9f61bab484e48e7814f5d2faca21f8a",
+      "Code": "X_Start= -2000;\nY_Start= -2000;\nHorisontal_Size = 43;\nVertical_Size = 46;\nSizeOfQquare = 4000;",
+      "Id": "cd9b5b58a02e4587a4bd4ae393dbee6e",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "45244d808b0e4a9aacc19aebcdc3b50a",
+          "Name": "",
+          "Description": "X_Start",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "ba63fd42b3314c24a1dbd83325607a79",
+          "Name": "",
+          "Description": "Y_Start",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "971223a9e19b45f3a17d609e144939bd",
+          "Name": "",
+          "Description": "Horisontal_Size",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "1a3d9b64d08442f0a1982ecad236d7b1",
+          "Name": "",
+          "Description": "Vertical_Size",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "19f6c68177ca45849c6381f38948b4c2",
+          "Name": "",
+          "Description": "SizeOfQquare",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Обеспечивает возможность непосредственного авторства кода DesignScript"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "a[0];\na[1];",
+      "Id": "3ecaa9224bb8452e9d3156fbf42e6993",
       "Inputs": [
         {
-          "Id": "e2d5ed5e1f5f48a09a1710d1418244c3",
+          "Id": "95a21fdd53e34d868b626a4a8d468836",
           "Name": "a",
           "Description": "a",
           "UsingDefaultValue": false,
@@ -250,57 +403,7 @@
       ],
       "Outputs": [
         {
-          "Id": "6d0a139f385a41d9af9a3050a1b06ea0",
-          "Name": "",
-          "Description": "Значение выражения в строке 1",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Replication": "Disabled",
-      "Description": "Обеспечивает возможность непосредственного авторства кода DesignScript"
-    },
-    {
-      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
-      "NodeType": "CodeBlockNode",
-      "Code": "200;",
-      "Id": "19db4f10e7dd49458b6401974fd266df",
-      "Inputs": [],
-      "Outputs": [
-        {
-          "Id": "0ea2e359ae934294a0c4d7e6a07eac28",
-          "Name": "",
-          "Description": "Значение выражения в строке 1",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Replication": "Disabled",
-      "Description": "Обеспечивает возможность непосредственного авторства кода DesignScript"
-    },
-    {
-      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
-      "NodeType": "CodeBlockNode",
-      "Code": "b[0];\nb[1];",
-      "Id": "de2770c88cbb4565bc82cb1137447717",
-      "Inputs": [
-        {
-          "Id": "16ecac112307487db85bd60aeb438298",
-          "Name": "b",
-          "Description": "b",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "38dbd5a9fafc4ad4b3b3c48397aa1a66",
+          "Id": "fde3f0f860e04439a7b67c76ffb0c7f2",
           "Name": "",
           "Description": "Значение выражения в строке 1",
           "UsingDefaultValue": false,
@@ -309,7 +412,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "e5e64d1acf8f4243bb308467fc8ed30a",
+          "Id": "2721630d3cfe47d7896e1a2b17419fd8",
           "Name": "",
           "Description": "Значение выражения в строке 2",
           "UsingDefaultValue": false,
@@ -324,13 +427,23 @@
     {
       "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
       "NodeType": "PythonScriptNode",
-      "Code": "import clr\r\nclr.AddReference('ProtoGeometry')\r\nfrom Autodesk.DesignScript.Geometry import Point\r\n\r\n\r\n# Outputs arrays\r\nText_List = list()\r\nPoints_List = list()\r\n\r\n#Ayxilary function\r\ndef GetOneCoordStr(value):\r\n\tif value<10:\r\n\t\tStrFinish = '0' + str(value)\r\n\telif value<0:\r\n\t\tStrFinish = '00'\r\n\telse:\r\n\t\tStrFinish = str(value)\r\n\treturn StrFinish\r\n\r\n#Function to getting text value\r\ndef GetStrCoordFromNum (x_value,y_value):\r\n\treturn str(GetOneCoordStr(x_value)) + str(GetOneCoordStr(y_value))\r\n\r\nfor CoordX in range(0,43):\r\n\tfor CoordY in range(0,46):\r\n\t\tText_List.append(GetStrCoordFromNum(CoordY,CoordX))\r\n\t\tOnePoint3D = Point.ByCoordinates(-2000+CoordX*4000,-2000+CoordY*4000,0)\r\n\t\tPoints_List.append(OnePoint3D)\r\n\t\tCoordY+=1\r\n\tCoordX+=1\r\n\r\nToExport = list()\r\nToExport.append(Text_List)\r\nToExport.append(Points_List)\r\n# Assign your output to the OUT variable.\r\nOUT = ToExport\r\n\r\n",
+      "Code": "import clr\r\nclr.AddReference('ProtoGeometry')\r\nfrom Autodesk.DesignScript.Geometry import Point\r\n# Outputs arrays\r\nPoints_List = list()\r\n\r\nfor OneCoordStr in IN[0]:\r\n\tstr_array = OneCoordStr.split(sep = ',')\r\n\tcoords_array = []\r\n\tfor OneCoordInStr in str_array:\r\n\t\tcoords_array.append(float(OneCoordInStr))\r\n\tOnePoint3D = Point.ByCoordinates(coords_array[0],coords_array[1],coords_array[2])\r\n\tPoints_List.append(OnePoint3D)\r\n# Assign your output to the OUT variable.\r\nOUT = Points_List",
       "VariableInputPorts": true,
-      "Id": "7d2437cd1b1c4129bfeb4af6929f3b18",
-      "Inputs": [],
+      "Id": "7c6284989bc546c390e83dd557dbe11a",
+      "Inputs": [
+        {
+          "Id": "b2d597b277e5420b85cda241b9d24864",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
       "Outputs": [
         {
-          "Id": "42c2889dab804dcba187f4e98a0742d7",
+          "Id": "9e976f421c5b4ba5a3457f9c5dbb1778",
           "Name": "OUT",
           "Description": "Результат сценария Python",
           "UsingDefaultValue": false,
@@ -341,92 +454,83 @@
       ],
       "Replication": "Disabled",
       "Description": "Выполнение встроенного сценария IronPython."
-    },
-    {
-      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
-      "NodeType": "ExtensionNode",
-      "Id": "929b32f5cb2b47a5b00ae0c95a1aa56c",
-      "Inputs": [
-        {
-          "Id": "e9b5a494825943a3afaa5ad459c73ed0",
-          "Name": "",
-          "Description": "Узел для оценки.",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "5410052dcc22453f979aa3693d9f40c2",
-          "Name": "",
-          "Description": "Просмотр содержимого.",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Replication": "Disabled",
-      "Description": "Визуализация входного элемента узла."
     }
   ],
   "Connectors": [
     {
-      "Start": "ee5d341a95a54447accfa92fd4bb2f0e",
+      "Start": "ee7e598f035048598e08df574bce435a",
       "End": "1b8b35c59bca476f9bc4664815eb29c7",
-      "Id": "27e118236f4847c5ac6651ca1803fa96"
+      "Id": "33a8dfd595234185923bb6e704f26948"
     },
     {
-      "Start": "ff82c4a5a200485fb96916407eb3e574",
+      "Start": "233a48b8e09849ac8f778717e6cef37d",
       "End": "27dbf03f998243a8ae6150cd656302ef",
-      "Id": "baee464675d04a85af21deb5af5d5815"
+      "Id": "be3bf77e5bba477da26e23454298fce6"
     },
     {
-      "Start": "21af6502e8b24499af4b703a3d62c0f0",
-      "End": "3e6f70c19bfc48118fb0397193aa51dd",
-      "Id": "d325f4bee4d84544a5ef2ccfd2452d0d"
-    },
-    {
-      "Start": "5c168863bee44c26ba2bf85218461d0d",
-      "End": "2ad6451282a045cba6669d925668908c",
-      "Id": "d42784a80c204178b75cedb4170e1c92"
-    },
-    {
-      "Start": "b15df154a7d946e0b8a7840902f92652",
-      "End": "e2d5ed5e1f5f48a09a1710d1418244c3",
-      "Id": "efc4dce367084aca9e628b32ae078309"
-    },
-    {
-      "Start": "6d0a139f385a41d9af9a3050a1b06ea0",
-      "End": "fe190106c17f40579fed4b8e76bdaf25",
-      "Id": "df96a6ca72cd49a790197b49f7e7f4c6"
-    },
-    {
-      "Start": "0ea2e359ae934294a0c4d7e6a07eac28",
+      "Start": "a4b82cf97efa49798bdcfe4517404c1e",
       "End": "41fc72d8f0e446e79347fdb484b67275",
-      "Id": "edfc57b76bc9498a9029d812374d2304"
+      "Id": "cf20d90ca56e4be686f2315ef7833528"
     },
     {
-      "Start": "38dbd5a9fafc4ad4b3b3c48397aa1a66",
+      "Start": "1ceadc685ac44fefb969cfd286f86640",
+      "End": "3e6f70c19bfc48118fb0397193aa51dd",
+      "Id": "00c20aaf904e4d608379a96a2adb3498"
+    },
+    {
+      "Start": "ea763d041663416c92ff9bdb5cd3c5bb",
+      "End": "77b13ca24a5f490eab8031937287ccd0",
+      "Id": "177eafe0629042f6b21cc952fb8227b6"
+    },
+    {
+      "Start": "69dab243b3ad43499716acc9a1bec8a1",
+      "End": "fe190106c17f40579fed4b8e76bdaf25",
+      "Id": "83fb4a4072a9411ba4561ae744b118ff"
+    },
+    {
+      "Start": "263f00190b0040208f832718cc68035b",
+      "End": "95a21fdd53e34d868b626a4a8d468836",
+      "Id": "af0a877b1a6249d791534d65569f4adc"
+    },
+    {
+      "Start": "45244d808b0e4a9aacc19aebcdc3b50a",
+      "End": "ec8cfcd1989044de89279a2dbe87d07a",
+      "Id": "26bfc45bb53041b29068eb95481f581f"
+    },
+    {
+      "Start": "ba63fd42b3314c24a1dbd83325607a79",
+      "End": "9044370a14044115870d6461ddd50e48",
+      "Id": "aaf127a0a036420d81f10ea3b9915a4e"
+    },
+    {
+      "Start": "971223a9e19b45f3a17d609e144939bd",
+      "End": "647421b72e1349abb28cdc576d737d89",
+      "Id": "8f77a40c88f94b33abe831e3c492d837"
+    },
+    {
+      "Start": "1a3d9b64d08442f0a1982ecad236d7b1",
+      "End": "88c84955a18543bcb60e757758bd3abe",
+      "Id": "ee0f3f2156294e668a292b02221934f7"
+    },
+    {
+      "Start": "19f6c68177ca45849c6381f38948b4c2",
+      "End": "28c3b77add234752bfa70e928696f892",
+      "Id": "570b6231f8234ffeae49da3139621409"
+    },
+    {
+      "Start": "fde3f0f860e04439a7b67c76ffb0c7f2",
       "End": "00f24832cc1a44d58e2e57318c82d83c",
-      "Id": "9b7c4a7edc984a7b9736656f5b298107"
+      "Id": "930ac9501f434f88a59e4c006e391a5c"
     },
     {
-      "Start": "e5e64d1acf8f4243bb308467fc8ed30a",
+      "Start": "2721630d3cfe47d7896e1a2b17419fd8",
+      "End": "b2d597b277e5420b85cda241b9d24864",
+      "Id": "391d0cd3cd9c40e7b17e9affc9143ad9"
+    },
+    {
+      "Start": "9e976f421c5b4ba5a3457f9c5dbb1778",
       "End": "6be8ed16f62345eeb9aa28b349af7038",
-      "Id": "169a8e3d74fe4697aa2a13f3a11afa05"
-    },
-    {
-      "Start": "42c2889dab804dcba187f4e98a0742d7",
-      "End": "e9b5a494825943a3afaa5ad459c73ed0",
-      "Id": "c66440912e8a47bab98dd0ca706997cc"
-    },
-    {
-      "Start": "42c2889dab804dcba187f4e98a0742d7",
-      "End": "16ecac112307487db85bd60aeb438298",
-      "Id": "b6877b822dd94772afd5dd1e910a3024"
+      "Id": "47ec28fe9a564381b6ad67b2d7b02d37"
     }
   ],
   "Dependencies": [],
@@ -461,113 +565,118 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 923.3776574870268,
-        "Y": 190.19716198027982
+        "X": 785.34448143819009,
+        "Y": 112.52695112570598
       },
       {
         "ShowGeometry": true,
         "Name": "MTextHorizontalAttachment",
-        "Id": "601302fd53a046889dc2c1d9cf8f4cff",
+        "Id": "4c42c0f26bef45f2b8ae30b20ed3f942",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 95.5,
-        "Y": 408.0
+        "X": 259.35993306760588,
+        "Y": 182.60457586985763
       },
       {
         "ShowGeometry": true,
         "Name": "MTextVerticalAttachment",
-        "Id": "186b46fd64524ebfb5758b53016f0207",
+        "Id": "ffe0dd9e4873473fa5e37dd7ca7d83b0",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 83.5,
-        "Y": 500.0
+        "X": 275.86013046608423,
+        "Y": 273.1761490497243
       },
       {
         "ShowGeometry": true,
         "Name": "Code Block",
-        "Id": "05523595664747529be23932674d38c0",
+        "Id": "dd007ba90c3c422eb940fc533f654f79",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 239.0,
-        "Y": 601.0
+        "X": 133.50208889253878,
+        "Y": 318.64770444907055
       },
       {
         "ShowGeometry": true,
         "Name": "Document.Current",
-        "Id": "8a4bbdd6c19d41ee94bc86efe6a2e507",
+        "Id": "e4fc47e455e046d4834ab6719e0ab172",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 140.5,
-        "Y": 704.0
+        "X": 132.42849755557722,
+        "Y": 411.63303559808264
       },
       {
         "ShowGeometry": true,
-        "Name": "Document.Blocks",
-        "Id": "c98dab5f3b494ddf83f03d45d014d29c",
+        "Name": "Document.ModelSpace",
+        "Id": "de9fe2610ca94924a474bf562a525dd3",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 357.5,
-        "Y": 718.0
+        "X": 328.34440888936012,
+        "Y": 409.79344957616945
       },
       {
         "ShowGeometry": true,
-        "Name": "Code Block",
-        "Id": "a9f61bab484e48e7814f5d2faca21f8a",
+        "Name": "GenerateTextAndStringsCoordinates",
+        "Id": "b9b0e314a4044213a37d64d7dc4f4fe6",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 626.0,
-        "Y": 745.0
-      },
-      {
-        "ShowGeometry": true,
-        "Name": "Code Block",
-        "Id": "19db4f10e7dd49458b6401974fd266df",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "X": 561.39887199547468,
-        "Y": 327.46096528681733
+        "X": 117.47035395445107,
+        "Y": -20.047366015920403
       },
       {
         "ShowGeometry": true,
         "Name": "Code Block",
-        "Id": "de2770c88cbb4565bc82cb1137447717",
+        "Id": "cd9b5b58a02e4587a4bd4ae393dbee6e",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 393.00965817810345,
-        "Y": 88.672004019328028
+        "X": -158.48037126989675,
+        "Y": -0.682005185936589
       },
       {
         "ShowGeometry": true,
-        "Name": "CreateText",
-        "Id": "7d2437cd1b1c4129bfeb4af6929f3b18",
+        "Name": "Code Block",
+        "Id": "3ecaa9224bb8452e9d3156fbf42e6993",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": -10.782936045286874,
-        "Y": -31.047885450753427
+        "X": 422.92616631246108,
+        "Y": 2.4512555814195309
       },
       {
         "ShowGeometry": true,
-        "Name": "Watch",
-        "Id": "929b32f5cb2b47a5b00ae0c95a1aa56c",
+        "Name": "CreatePointsFromString",
+        "Id": "7c6284989bc546c390e83dd557dbe11a",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 245.70309438938943,
-        "Y": -308.77402632302369
+        "X": 549.70944392110994,
+        "Y": 145.95765654175307
       }
     ],
-    "Annotations": [],
-    "X": 180.42590061501522,
-    "Y": 216.75989034485116,
-    "Zoom": 1.0069333865956744
+    "Annotations": [
+      {
+        "Id": "65bc4d364b834f9e9fc53db28e9331cb",
+        "Title": "Описание работы скрипта\r\n\r\nДанный скрипт расставляет текстовые метки (объектом MText) по прямогольным квадратам с равным шагом, записывая в значение метки номер квадарат по Y и по X.",
+        "Nodes": [],
+        "Left": -316.43216099688323,
+        "Top": 243.79760374114005,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": 562.99448566924252,
+    "Y": -53.673411446655564,
+    "Zoom": 1.3639394178809163
   }
 }
