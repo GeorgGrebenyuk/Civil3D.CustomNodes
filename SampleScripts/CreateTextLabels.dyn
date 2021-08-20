@@ -1,0 +1,573 @@
+{
+  "Uuid": "640e78e7-3154-4443-9778-c9952f3b40de",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "CreateTextLabels",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Autodesk.AutoCAD.DynamoNodes.MText.Create@string,Autodesk.DesignScript.Geometry.Point,int,double,double,double,string,string,string,Autodesk.AutoCAD.DynamoNodes.Block",
+      "Id": "3376a44ba80946b98e798db4c08f5389",
+      "Inputs": [
+        {
+          "Id": "00f24832cc1a44d58e2e57318c82d83c",
+          "Name": "text",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "6be8ed16f62345eeb9aa28b349af7038",
+          "Name": "insertionPoint",
+          "Description": "Point",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "05ccee1d0c01407da5382c9820416dae",
+          "Name": "columns",
+          "Description": "int\nЗначение по умолчанию : 1",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "14ca1d31e8774aa4bfa44071540a50d4",
+          "Name": "width",
+          "Description": "double\nЗначение по умолчанию : 0.2",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "41fc72d8f0e446e79347fdb484b67275",
+          "Name": "height",
+          "Description": "double\nЗначение по умолчанию : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e84029a729af46bebeae149d1df4ac55",
+          "Name": "columnGutterWidth",
+          "Description": "double\nЗначение по умолчанию : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "1b8b35c59bca476f9bc4664815eb29c7",
+          "Name": "horizontalAttachment",
+          "Description": "string\nЗначение по умолчанию : \"Left\"",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "27dbf03f998243a8ae6150cd656302ef",
+          "Name": "verticalAttachment",
+          "Description": "string\nЗначение по умолчанию : \"Top\"",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "3e6f70c19bfc48118fb0397193aa51dd",
+          "Name": "layer",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "fe190106c17f40579fed4b8e76bdaf25",
+          "Name": "block",
+          "Description": "Block",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "eebe906739b549239748361872152970",
+          "Name": "MText",
+          "Description": "MText",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Создание многострочного текста AutoCAD из строки текста.\n\nMText.Create (text: string, insertionPoint: Point, columns: int = 1, width: double = 0.2, height: double = 0, columnGutterWidth: double = 0, horizontalAttachment: string = \"Left\", verticalAttachment: string = \"Top\", layer: string, block: Block): MText"
+    },
+    {
+      "ConcreteType": "Autodesk.AutoCAD.DynamoNodes.HorizontalAttachment, AutoCADNodesUI",
+      "SelectedIndex": 1,
+      "SelectedString": "По центру",
+      "NodeType": "ExtensionNode",
+      "Id": "601302fd53a046889dc2c1d9cf8f4cff",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "ee5d341a95a54447accfa92fd4bb2f0e",
+          "Name": "Horizontal Attachment",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Задание горизонтальной привязки для узла создания многострочного текста."
+    },
+    {
+      "ConcreteType": "Autodesk.AutoCAD.DynamoNodes.VerticalAttachment, AutoCADNodesUI",
+      "SelectedIndex": 1,
+      "SelectedString": "Посередине",
+      "NodeType": "ExtensionNode",
+      "Id": "186b46fd64524ebfb5758b53016f0207",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "ff82c4a5a200485fb96916407eb3e574",
+          "Name": "Vertical Attachment",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Задание вертикальной привязки для узла создания многострочного текста."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"0\";",
+      "Id": "05523595664747529be23932674d38c0",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "21af6502e8b24499af4b703a3d62c0f0",
+          "Name": "",
+          "Description": "Значение выражения в строке 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Обеспечивает возможность непосредственного авторства кода DesignScript"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Autodesk.AutoCAD.DynamoNodes.Document.Current",
+      "Id": "8a4bbdd6c19d41ee94bc86efe6a2e507",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "5c168863bee44c26ba2bf85218461d0d",
+          "Name": "Document",
+          "Description": "Document",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Получение текущего документа AutoCAD.\n\nDocument.Current: Document"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Autodesk.AutoCAD.DynamoNodes.Document.Blocks",
+      "Id": "c98dab5f3b494ddf83f03d45d014d29c",
+      "Inputs": [
+        {
+          "Id": "2ad6451282a045cba6669d925668908c",
+          "Name": "document",
+          "Description": "Autodesk.AutoCAD.DynamoNodes.Document",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "b15df154a7d946e0b8a7840902f92652",
+          "Name": "Block[]",
+          "Description": "Block[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Получение всех записей таблицы блоков из текущего документа.\n\nDocument.Blocks: Block[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "a[0];",
+      "Id": "a9f61bab484e48e7814f5d2faca21f8a",
+      "Inputs": [
+        {
+          "Id": "e2d5ed5e1f5f48a09a1710d1418244c3",
+          "Name": "a",
+          "Description": "a",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "6d0a139f385a41d9af9a3050a1b06ea0",
+          "Name": "",
+          "Description": "Значение выражения в строке 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Обеспечивает возможность непосредственного авторства кода DesignScript"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "200;",
+      "Id": "19db4f10e7dd49458b6401974fd266df",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "0ea2e359ae934294a0c4d7e6a07eac28",
+          "Name": "",
+          "Description": "Значение выражения в строке 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Обеспечивает возможность непосредственного авторства кода DesignScript"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "b[0];\nb[1];",
+      "Id": "de2770c88cbb4565bc82cb1137447717",
+      "Inputs": [
+        {
+          "Id": "16ecac112307487db85bd60aeb438298",
+          "Name": "b",
+          "Description": "b",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "38dbd5a9fafc4ad4b3b3c48397aa1a66",
+          "Name": "",
+          "Description": "Значение выражения в строке 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e5e64d1acf8f4243bb308467fc8ed30a",
+          "Name": "",
+          "Description": "Значение выражения в строке 2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Обеспечивает возможность непосредственного авторства кода DesignScript"
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "NodeType": "PythonScriptNode",
+      "Code": "import clr\r\nclr.AddReference('ProtoGeometry')\r\nfrom Autodesk.DesignScript.Geometry import Point\r\n\r\n\r\n# Outputs arrays\r\nText_List = list()\r\nPoints_List = list()\r\n\r\n#Ayxilary function\r\ndef GetOneCoordStr(value):\r\n\tif value<10:\r\n\t\tStrFinish = '0' + str(value)\r\n\telif value<0:\r\n\t\tStrFinish = '00'\r\n\telse:\r\n\t\tStrFinish = str(value)\r\n\treturn StrFinish\r\n\r\n#Function to getting text value\r\ndef GetStrCoordFromNum (x_value,y_value):\r\n\treturn str(GetOneCoordStr(x_value)) + str(GetOneCoordStr(y_value))\r\n\r\nfor CoordX in range(0,43):\r\n\tfor CoordY in range(0,46):\r\n\t\tText_List.append(GetStrCoordFromNum(CoordY,CoordX))\r\n\t\tOnePoint3D = Point.ByCoordinates(-2000+CoordX*4000,-2000+CoordY*4000,0)\r\n\t\tPoints_List.append(OnePoint3D)\r\n\t\tCoordY+=1\r\n\tCoordX+=1\r\n\r\nToExport = list()\r\nToExport.append(Text_List)\r\nToExport.append(Points_List)\r\n# Assign your output to the OUT variable.\r\nOUT = ToExport\r\n\r\n",
+      "VariableInputPorts": true,
+      "Id": "7d2437cd1b1c4129bfeb4af6929f3b18",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "42c2889dab804dcba187f4e98a0742d7",
+          "Name": "OUT",
+          "Description": "Результат сценария Python",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Выполнение встроенного сценария IronPython."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Id": "929b32f5cb2b47a5b00ae0c95a1aa56c",
+      "Inputs": [
+        {
+          "Id": "e9b5a494825943a3afaa5ad459c73ed0",
+          "Name": "",
+          "Description": "Узел для оценки.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "5410052dcc22453f979aa3693d9f40c2",
+          "Name": "",
+          "Description": "Просмотр содержимого.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Визуализация входного элемента узла."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "ee5d341a95a54447accfa92fd4bb2f0e",
+      "End": "1b8b35c59bca476f9bc4664815eb29c7",
+      "Id": "27e118236f4847c5ac6651ca1803fa96"
+    },
+    {
+      "Start": "ff82c4a5a200485fb96916407eb3e574",
+      "End": "27dbf03f998243a8ae6150cd656302ef",
+      "Id": "baee464675d04a85af21deb5af5d5815"
+    },
+    {
+      "Start": "21af6502e8b24499af4b703a3d62c0f0",
+      "End": "3e6f70c19bfc48118fb0397193aa51dd",
+      "Id": "d325f4bee4d84544a5ef2ccfd2452d0d"
+    },
+    {
+      "Start": "5c168863bee44c26ba2bf85218461d0d",
+      "End": "2ad6451282a045cba6669d925668908c",
+      "Id": "d42784a80c204178b75cedb4170e1c92"
+    },
+    {
+      "Start": "b15df154a7d946e0b8a7840902f92652",
+      "End": "e2d5ed5e1f5f48a09a1710d1418244c3",
+      "Id": "efc4dce367084aca9e628b32ae078309"
+    },
+    {
+      "Start": "6d0a139f385a41d9af9a3050a1b06ea0",
+      "End": "fe190106c17f40579fed4b8e76bdaf25",
+      "Id": "df96a6ca72cd49a790197b49f7e7f4c6"
+    },
+    {
+      "Start": "0ea2e359ae934294a0c4d7e6a07eac28",
+      "End": "41fc72d8f0e446e79347fdb484b67275",
+      "Id": "edfc57b76bc9498a9029d812374d2304"
+    },
+    {
+      "Start": "38dbd5a9fafc4ad4b3b3c48397aa1a66",
+      "End": "00f24832cc1a44d58e2e57318c82d83c",
+      "Id": "9b7c4a7edc984a7b9736656f5b298107"
+    },
+    {
+      "Start": "e5e64d1acf8f4243bb308467fc8ed30a",
+      "End": "6be8ed16f62345eeb9aa28b349af7038",
+      "Id": "169a8e3d74fe4697aa2a13f3a11afa05"
+    },
+    {
+      "Start": "42c2889dab804dcba187f4e98a0742d7",
+      "End": "e9b5a494825943a3afaa5ad459c73ed0",
+      "Id": "c66440912e8a47bab98dd0ca706997cc"
+    },
+    {
+      "Start": "42c2889dab804dcba187f4e98a0742d7",
+      "End": "16ecac112307487db85bd60aeb438298",
+      "Id": "b6877b822dd94772afd5dd1e910a3024"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.5.2.7915",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Фоновый просмотр",
+      "EyeX": -5.043195805154352,
+      "EyeY": 471.9431185051007,
+      "EyeZ": -11.052896724390088,
+      "LookX": 0.043195805154351952,
+      "LookY": -460.9431185051007,
+      "LookZ": 3.052896724390088,
+      "UpX": -0.013838543606328435,
+      "UpY": 0.20791169081775976,
+      "UpZ": -0.97804970401925739
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "MText.Create",
+        "Id": "3376a44ba80946b98e798db4c08f5389",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 923.3776574870268,
+        "Y": 190.19716198027982
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "MTextHorizontalAttachment",
+        "Id": "601302fd53a046889dc2c1d9cf8f4cff",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 95.5,
+        "Y": 408.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "MTextVerticalAttachment",
+        "Id": "186b46fd64524ebfb5758b53016f0207",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 83.5,
+        "Y": 500.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "05523595664747529be23932674d38c0",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 239.0,
+        "Y": 601.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Document.Current",
+        "Id": "8a4bbdd6c19d41ee94bc86efe6a2e507",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 140.5,
+        "Y": 704.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Document.Blocks",
+        "Id": "c98dab5f3b494ddf83f03d45d014d29c",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 357.5,
+        "Y": 718.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "a9f61bab484e48e7814f5d2faca21f8a",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 626.0,
+        "Y": 745.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "19db4f10e7dd49458b6401974fd266df",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 561.39887199547468,
+        "Y": 327.46096528681733
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "de2770c88cbb4565bc82cb1137447717",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 393.00965817810345,
+        "Y": 88.672004019328028
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "CreateText",
+        "Id": "7d2437cd1b1c4129bfeb4af6929f3b18",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -10.782936045286874,
+        "Y": -31.047885450753427
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Watch",
+        "Id": "929b32f5cb2b47a5b00ae0c95a1aa56c",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 245.70309438938943,
+        "Y": -308.77402632302369
+      }
+    ],
+    "Annotations": [],
+    "X": 180.42590061501522,
+    "Y": 216.75989034485116,
+    "Zoom": 1.0069333865956744
+  }
+}
