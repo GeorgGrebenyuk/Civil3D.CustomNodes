@@ -27,7 +27,55 @@
       }
     }
   },
-  "Inputs": [],
+  "Inputs": [
+    {
+      "Id": "e333863f376345288109e8075a3b36bc",
+      "Name": "X_Start",
+      "Type": "number",
+      "Value": "-2000",
+      "NumberType": "Double",
+      "Description": "Создание числа."
+    },
+    {
+      "Id": "636becca069f471a94f7e2650bb7dd4b",
+      "Name": "Y_Start",
+      "Type": "number",
+      "Value": "-2000",
+      "NumberType": "Double",
+      "Description": "Создание числа."
+    },
+    {
+      "Id": "37bcbd7fcdc84651acca82bb08790db1",
+      "Name": "Horisontal_Size",
+      "Type": "number",
+      "Value": "43",
+      "NumberType": "Double",
+      "Description": "Создание числа."
+    },
+    {
+      "Id": "0903588ddd774ea292b720f088de4668",
+      "Name": "Vertical_Size",
+      "Type": "number",
+      "Value": "46",
+      "NumberType": "Double",
+      "Description": "Создание числа."
+    },
+    {
+      "Id": "373da8a5b9f74a0a98afa41094be4ccf",
+      "Name": "SizeOfQquare",
+      "Type": "number",
+      "Value": "4000",
+      "NumberType": "Double",
+      "Description": "Создание числа."
+    },
+    {
+      "Id": "73f26262ecff4b7e9772b4d8b8d3f863",
+      "Name": "TargetLayer",
+      "Type": "string",
+      "Value": "0;",
+      "Description": "Создание строки."
+    }
+  ],
   "Outputs": [],
   "Nodes": [
     {
@@ -184,35 +232,6 @@
       "Description": "Задание вертикальной привязки для узла создания многострочного текста."
     },
     {
-      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
-      "NodeType": "CodeBlockNode",
-      "Code": "200;\n\"0\";",
-      "Id": "dd007ba90c3c422eb940fc533f654f79",
-      "Inputs": [],
-      "Outputs": [
-        {
-          "Id": "a4b82cf97efa49798bdcfe4517404c1e",
-          "Name": "",
-          "Description": "Значение выражения в строке 1",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "1ceadc685ac44fefb969cfd286f86640",
-          "Name": "",
-          "Description": "Значение выражения в строке 2",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Replication": "Disabled",
-      "Description": "Обеспечивает возможность непосредственного авторства кода DesignScript"
-    },
-    {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
       "NodeType": "FunctionNode",
       "FunctionSignature": "Autodesk.AutoCAD.DynamoNodes.Document.Current",
@@ -332,62 +351,6 @@
     {
       "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
       "NodeType": "CodeBlockNode",
-      "Code": "X_Start= -2000;\nY_Start= -2000;\nHorisontal_Size = 43;\nVertical_Size = 46;\nSizeOfQquare = 4000;",
-      "Id": "cd9b5b58a02e4587a4bd4ae393dbee6e",
-      "Inputs": [],
-      "Outputs": [
-        {
-          "Id": "45244d808b0e4a9aacc19aebcdc3b50a",
-          "Name": "",
-          "Description": "X_Start",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "ba63fd42b3314c24a1dbd83325607a79",
-          "Name": "",
-          "Description": "Y_Start",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "971223a9e19b45f3a17d609e144939bd",
-          "Name": "",
-          "Description": "Horisontal_Size",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "1a3d9b64d08442f0a1982ecad236d7b1",
-          "Name": "",
-          "Description": "Vertical_Size",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "19f6c68177ca45849c6381f38948b4c2",
-          "Name": "",
-          "Description": "SizeOfQquare",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Replication": "Disabled",
-      "Description": "Обеспечивает возможность непосредственного авторства кода DesignScript"
-    },
-    {
-      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
-      "NodeType": "CodeBlockNode",
       "Code": "a[0];\na[1];",
       "Id": "3ecaa9224bb8452e9d3156fbf42e6993",
       "Inputs": [
@@ -454,6 +417,131 @@
       ],
       "Replication": "Disabled",
       "Description": "Выполнение встроенного сценария IronPython."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Double",
+      "InputValue": -2000.0,
+      "Id": "e333863f376345288109e8075a3b36bc",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "e359e2a1116441ffaee56713bf863507",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Создание числа."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Double",
+      "InputValue": -2000.0,
+      "Id": "636becca069f471a94f7e2650bb7dd4b",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "28aaac743e9f4bd8aa3e5ffe6e4fcc9a",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Создание числа."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Double",
+      "InputValue": 43.0,
+      "Id": "37bcbd7fcdc84651acca82bb08790db1",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "0436ae0d4e9b4098ba714884ce84a30b",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Создание числа."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Double",
+      "InputValue": 46.0,
+      "Id": "0903588ddd774ea292b720f088de4668",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "298dc4750f7f48f1ae6a7154f7fef333",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Создание числа."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Double",
+      "InputValue": 4000.0,
+      "Id": "373da8a5b9f74a0a98afa41094be4ccf",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "fba4f3a3c6e24641b3746446856f41ea",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Создание числа."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "0;",
+      "Id": "73f26262ecff4b7e9772b4d8b8d3f863",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "2630f64a9d2d480f9dda2157b39fd735",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Создание строки."
     }
   ],
   "Connectors": [
@@ -466,16 +554,6 @@
       "Start": "233a48b8e09849ac8f778717e6cef37d",
       "End": "27dbf03f998243a8ae6150cd656302ef",
       "Id": "be3bf77e5bba477da26e23454298fce6"
-    },
-    {
-      "Start": "a4b82cf97efa49798bdcfe4517404c1e",
-      "End": "41fc72d8f0e446e79347fdb484b67275",
-      "Id": "cf20d90ca56e4be686f2315ef7833528"
-    },
-    {
-      "Start": "1ceadc685ac44fefb969cfd286f86640",
-      "End": "3e6f70c19bfc48118fb0397193aa51dd",
-      "Id": "00c20aaf904e4d608379a96a2adb3498"
     },
     {
       "Start": "ea763d041663416c92ff9bdb5cd3c5bb",
@@ -493,34 +571,9 @@
       "Id": "af0a877b1a6249d791534d65569f4adc"
     },
     {
-      "Start": "45244d808b0e4a9aacc19aebcdc3b50a",
-      "End": "ec8cfcd1989044de89279a2dbe87d07a",
-      "Id": "26bfc45bb53041b29068eb95481f581f"
-    },
-    {
-      "Start": "ba63fd42b3314c24a1dbd83325607a79",
-      "End": "9044370a14044115870d6461ddd50e48",
-      "Id": "aaf127a0a036420d81f10ea3b9915a4e"
-    },
-    {
-      "Start": "971223a9e19b45f3a17d609e144939bd",
-      "End": "647421b72e1349abb28cdc576d737d89",
-      "Id": "8f77a40c88f94b33abe831e3c492d837"
-    },
-    {
-      "Start": "1a3d9b64d08442f0a1982ecad236d7b1",
-      "End": "88c84955a18543bcb60e757758bd3abe",
-      "Id": "ee0f3f2156294e668a292b02221934f7"
-    },
-    {
-      "Start": "19f6c68177ca45849c6381f38948b4c2",
-      "End": "28c3b77add234752bfa70e928696f892",
-      "Id": "570b6231f8234ffeae49da3139621409"
-    },
-    {
       "Start": "fde3f0f860e04439a7b67c76ffb0c7f2",
       "End": "00f24832cc1a44d58e2e57318c82d83c",
-      "Id": "930ac9501f434f88a59e4c006e391a5c"
+      "Id": "1798ce88b0c748a19aea2423537f2eb1"
     },
     {
       "Start": "2721630d3cfe47d7896e1a2b17419fd8",
@@ -531,6 +584,36 @@
       "Start": "9e976f421c5b4ba5a3457f9c5dbb1778",
       "End": "6be8ed16f62345eeb9aa28b349af7038",
       "Id": "47ec28fe9a564381b6ad67b2d7b02d37"
+    },
+    {
+      "Start": "e359e2a1116441ffaee56713bf863507",
+      "End": "ec8cfcd1989044de89279a2dbe87d07a",
+      "Id": "5d962ad7abf4415a97828f9eea456f06"
+    },
+    {
+      "Start": "28aaac743e9f4bd8aa3e5ffe6e4fcc9a",
+      "End": "9044370a14044115870d6461ddd50e48",
+      "Id": "1d26932bdb5d4b20b52fcbf1977a31ce"
+    },
+    {
+      "Start": "0436ae0d4e9b4098ba714884ce84a30b",
+      "End": "647421b72e1349abb28cdc576d737d89",
+      "Id": "d989c279cb1840fd9c3ae83c5af1a458"
+    },
+    {
+      "Start": "298dc4750f7f48f1ae6a7154f7fef333",
+      "End": "88c84955a18543bcb60e757758bd3abe",
+      "Id": "c6259fc006ef4b6dbe38417481be1a50"
+    },
+    {
+      "Start": "fba4f3a3c6e24641b3746446856f41ea",
+      "End": "28c3b77add234752bfa70e928696f892",
+      "Id": "1594a68461364cc6aaae35cdfcaf6423"
+    },
+    {
+      "Start": "2630f64a9d2d480f9dda2157b39fd735",
+      "End": "3e6f70c19bfc48118fb0397193aa51dd",
+      "Id": "3de275d0a01d4f4792509fa8f61527fd"
     }
   ],
   "Dependencies": [],
@@ -565,8 +648,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 785.34448143819009,
-        "Y": 112.52695112570598
+        "X": 813.11081029788556,
+        "Y": 1.4616356869238984
       },
       {
         "ShowGeometry": true,
@@ -575,8 +658,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 259.35993306760588,
-        "Y": 182.60457586985763
+        "X": 166.80550353528747,
+        "Y": 262.43277134148229
       },
       {
         "ShowGeometry": true,
@@ -585,18 +668,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 275.86013046608423,
-        "Y": 273.1761490497243
-      },
-      {
-        "ShowGeometry": true,
-        "Name": "Code Block",
-        "Id": "dd007ba90c3c422eb940fc533f654f79",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "X": 133.50208889253878,
-        "Y": 318.64770444907055
+        "X": 182.14877056461182,
+        "Y": 343.74890156811722
       },
       {
         "ShowGeometry": true,
@@ -605,8 +678,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 132.42849755557722,
-        "Y": 411.63303559808264
+        "X": 68.797327252108516,
+        "Y": 468.32262368662765
       },
       {
         "ShowGeometry": true,
@@ -615,8 +688,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 328.34440888936012,
-        "Y": 409.79344957616945
+        "X": 276.28254227743116,
+        "Y": 460.69838581894459
       },
       {
         "ShowGeometry": true,
@@ -625,18 +698,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 117.47035395445107,
-        "Y": -20.047366015920403
-      },
-      {
-        "ShowGeometry": true,
-        "Name": "Code Block",
-        "Id": "cd9b5b58a02e4587a4bd4ae393dbee6e",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "X": -158.48037126989675,
-        "Y": -0.682005185936589
+        "X": 118.62728432360507,
+        "Y": -101.03249185669898
       },
       {
         "ShowGeometry": true,
@@ -645,8 +708,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 422.92616631246108,
-        "Y": 2.4512555814195309
+        "X": 424.08309668161507,
+        "Y": -78.533870259359048
       },
       {
         "ShowGeometry": true,
@@ -655,17 +718,133 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 549.70944392110994,
-        "Y": 145.95765654175307
+        "X": 550.86637429026393,
+        "Y": 64.972530700974488
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "X_Start",
+        "Id": "e333863f376345288109e8075a3b36bc",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -274.22489682651218,
+        "Y": -87.784742925422279
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Y_Start",
+        "Id": "636becca069f471a94f7e2650bb7dd4b",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -276.04270403338938,
+        "Y": -28.706008701911145
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Horisontal_Size",
+        "Id": "37bcbd7fcdc84651acca82bb08790db1",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -272.4070896196348,
+        "Y": 31.28162912503862
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Vertical_Size",
+        "Id": "0903588ddd774ea292b720f088de4668",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -275.13380042995072,
+        "Y": 105.81172460700651
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "SizeOfQquare",
+        "Id": "373da8a5b9f74a0a98afa41094be4ccf",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -277.88200041319436,
+        "Y": 163.42283673095818
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "TargetLayer",
+        "Id": "73f26262ecff4b7e9772b4d8b8d3f863",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -274.729627223841,
+        "Y": 243.44966790446455
       }
     ],
     "Annotations": [
       {
+        "Id": "a5740b224b8d409792440b3cbe200338",
+        "Title": "Входные параметры",
+        "Nodes": [
+          "e333863f376345288109e8075a3b36bc",
+          "636becca069f471a94f7e2650bb7dd4b",
+          "37bcbd7fcdc84651acca82bb08790db1",
+          "0903588ddd774ea292b720f088de4668",
+          "373da8a5b9f74a0a98afa41094be4ccf",
+          "73f26262ecff4b7e9772b4d8b8d3f863"
+        ],
+        "Left": -287.88200041319436,
+        "Top": -183.78474292542228,
+        "Width": 194.14666666666668,
+        "Height": 495.23441082988683,
+        "FontSize": 36.0,
+        "InitialTop": -87.784742925422279,
+        "InitialHeight": 476.23441082988683,
+        "TextblockHeight": 86.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "a69ae8d4ce0d496fa2be8ef2373830e6",
+        "Title": "Положение текста",
+        "Nodes": [
+          "4c42c0f26bef45f2b8ae30b20ed3f942",
+          "ffe0dd9e4873473fa5e37dd7ca7d83b0"
+        ],
+        "Left": 156.80550353528747,
+        "Top": 166.43277134148229,
+        "Width": 266.34326702932435,
+        "Height": 270.31613022663493,
+        "FontSize": 36.0,
+        "InitialTop": 262.43277134148229,
+        "InitialHeight": 226.31613022663493,
+        "TextblockHeight": 86.0,
+        "Background": "#FFB9F9E1"
+      },
+      {
+        "Id": "593d268ca4b04449bd1606b99e0c9b9c",
+        "Title": "Python-функции (не редактировать при отсутствии понимания)",
+        "Nodes": [
+          "b9b0e314a4044213a37d64d7dc4f4fe6",
+          "3ecaa9224bb8452e9d3156fbf42e6993",
+          "7c6284989bc546c390e83dd557dbe11a"
+        ],
+        "Left": 108.62728432360507,
+        "Top": -197.03249185669898,
+        "Width": 613.23908996665887,
+        "Height": 355.00502255767344,
+        "FontSize": 36.0,
+        "InitialTop": -101.03249185669898,
+        "InitialHeight": 311.00502255767344,
+        "TextblockHeight": 86.0,
+        "Background": "#FFFFB8D8"
+      },
+      {
         "Id": "65bc4d364b834f9e9fc53db28e9331cb",
-        "Title": "Описание работы скрипта\r\n\r\nДанный скрипт расставляет текстовые метки (объектом MText) по прямогольным квадратам с равным шагом, записывая в значение метки номер квадарат по Y и по X.",
+        "Title": "Описание работы скрипта\r\n\r\nДанный скрипт расставляет текстовые метки (объектом MText) по прямогольным квадратам с равным шагом, записывая в значение метки номер квадарат по Y и по X.\r\n\r\nПоследнюю версию скрипта можно скачать по ссылке: https://github.com/GeorgGrebenyuk/Civil3D.CustomNodes/blob/main/SampleScripts/CreateTextLabels.dyn ",
         "Nodes": [],
-        "Left": -316.43216099688323,
-        "Top": 243.79760374114005,
+        "Left": -304.70663822714914,
+        "Top": 359.03894082851809,
         "Width": 0.0,
         "Height": 0.0,
         "FontSize": 36.0,
@@ -675,8 +854,8 @@
         "Background": "#FFC1D676"
       }
     ],
-    "X": 562.99448566924252,
-    "Y": -53.673411446655564,
-    "Zoom": 1.3639394178809163
+    "X": 311.59175232825464,
+    "Y": 184.84817161553207,
+    "Zoom": 0.78584478282941139
   }
 }
