@@ -11,7 +11,7 @@ using Autodesk.AutoCAD.EditorInput;
 using Autodesk.AutoCAD.Geometry;
 using Autodesk.AutoCAD.Runtime;
 
-namespace Civil3D_DrawingProperties
+namespace Civil3D_CustomNodes
 {
     public class ProjectProperties
     {
