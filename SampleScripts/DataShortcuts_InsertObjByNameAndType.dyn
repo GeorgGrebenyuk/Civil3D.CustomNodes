@@ -1,0 +1,742 @@
+{
+  "Uuid": "7ebe65fb-55c0-418b-9586-2375296d59b3",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "DataShortcuts_InsertObjByNameAndType",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [
+    {
+      "Id": "f83791d1eddc40799eba6ea5e47adeee",
+      "Name": "WhichElementsNeedSelect",
+      "Type": "string",
+      "Value": "0918",
+      "Description": "Creates a string.",
+      "SelectedIndex": 0
+    }
+  ],
+  "Outputs": [
+    {
+      "Id": "302f26e96b964651bae00cd62b78d36f",
+      "Name": "InsertItemsToDrawing",
+      "Type": "unknown",
+      "InitialValue": "",
+      "Description": "Runs an embedded Python script."
+    }
+  ],
+  "Nodes": [
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "NodeType": "PythonScriptNode",
+      "Code": "# Load the Python Standard and DesignScript Libraries\r\nimport sys\r\nimport clr\r\n\r\n# Add Assemblies for AutoCAD and Civil3D\r\nclr.AddReference('AcMgd')\r\nclr.AddReference('AcCoreMgd')\r\nclr.AddReference('AcDbMgd')\r\nclr.AddReference('AecBaseMgd')\r\nclr.AddReference('AecPropDataMgd')\r\nclr.AddReference('AeccDbMgd')\r\nclr.AddReference('AeccDataShortcutMgd')\r\n\r\n# Import references from AutoCAD\r\nfrom Autodesk.AutoCAD.ApplicationServices import *\r\nfrom Autodesk.AutoCAD.DatabaseServices import *\r\nfrom Autodesk.Civil.ApplicationServices import *\r\nfrom Autodesk.Civil.DataShortcuts import *\r\n\r\nToExport = list()\r\n\r\nadoc = Application.DocumentManager.MdiActiveDocument\r\neditor = adoc.Editor\r\n\r\nwith adoc.LockDocument():\r\n    with adoc.Database as db:\r\n        with db.TransactionManager.StartTransaction() as t:\r\n        \tToExport.append(DataShortcuts.GetWorkingFolder())\r\n        \tToExport.append(DataShortcuts.GetCurrentProjectFolder())\r\n\t\tt.Commit()\r\n# Assign your output to the OUT variable.\r\nOUT = ToExport\r\n",
+      "Engine": "IronPython2",
+      "VariableInputPorts": true,
+      "Id": "4232699efcf349c4baf6e0d5718b1617",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "1f2d90c3ef7b4df483a68cc9e54bacfc",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSVarArgFunction, DynamoCore",
+      "FunctionSignature": "DSCore.String.Concat@string[]",
+      "FunctionType": "VariableArgument",
+      "NodeType": "FunctionNode",
+      "Id": "81f3d30508a1412f87fe0217498e9b92",
+      "Inputs": [
+        {
+          "Id": "326b78abd2794d1faba1e2d80b2e1379",
+          "Name": "string0",
+          "Description": "List of strings to concatenate.\n\nstring[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "df0c2cb457e64b0bb366030444e35c06",
+          "Name": "string1",
+          "Description": "string[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0a715a30aadf45a291c07a2cc8f1a2d4",
+          "Name": "string2",
+          "Description": "string[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "bf91ba7bc6c6404792a611c13a553166",
+          "Name": "string3",
+          "Description": "string[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "da6b51848f864dddbaefc0c5ea7bf390",
+          "Name": "string",
+          "Description": "String made from list of strings.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Concatenates multiple strings into a single string.\n\nString.Concat (strings: string[]): string"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "a[0];\na[1];\n\"\\\\\";\n\"\\\\_Shortcuts\";",
+      "Id": "f32a6ef0dff34796a59afcbb86076914",
+      "Inputs": [
+        {
+          "Id": "80d92c04d9924bcaa7e06b82ea0d6683",
+          "Name": "a",
+          "Description": "a",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "1452efcf334747599e260b4823716e99",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "89859a7b87e94325ad9e0ead069b28b6",
+          "Name": "",
+          "Description": "Value of expression at line 2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e0b17b9e6cd84c6caf8a787fd1b7aae4",
+          "Name": "",
+          "Description": "Value of expression at line 3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "228245dd674d46159d5f58ee15e9e993",
+          "Name": "",
+          "Description": "Value of expression at line 4",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "0918",
+      "Id": "f83791d1eddc40799eba6ea5e47adeee",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "e930ee0d97b8447f852f614dee828b98",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string."
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "NodeType": "PythonScriptNode",
+      "Code": "# Load the Python Standard and DesignScript Libraries\r\nimport sys\r\nimport clr\r\n\r\n# Add Assemblies for AutoCAD and Civil3D\r\nclr.AddReference('AcMgd')\r\nclr.AddReference('AcCoreMgd')\r\nclr.AddReference('AcDbMgd')\r\nclr.AddReference('AecBaseMgd')\r\nclr.AddReference('AecPropDataMgd')\r\nclr.AddReference('AeccDbMgd')\r\nclr.AddReference('AeccDataShortcutMgd')\r\n\r\n# Import references from AutoCAD\r\nfrom Autodesk.AutoCAD.Runtime import *\r\nfrom Autodesk.AutoCAD.ApplicationServices import *\r\nfrom Autodesk.AutoCAD.EditorInput import *\r\nfrom Autodesk.AutoCAD.DatabaseServices import *\r\nfrom Autodesk.AutoCAD.Geometry import *\r\nfrom Autodesk.Civil.DataShortcuts import *\r\n\r\n# Import references from Civil3D\r\nfrom Autodesk.Civil.ApplicationServices import *\r\nfrom Autodesk.Civil.DatabaseServices import *\r\n\r\n# The inputs to this node will be stored as a list in the IN variables.\r\nDataTypes = IN[0]\r\nPathsToParentFile = IN[1]\r\nObjNames = IN[2]\r\nObjHandles = IN[3]\r\nNeedingName = IN[4]\r\nNeedindTypeList = IN[5]\r\nLenOfLists = len(DataTypes)\r\n\r\nListWithItems = list()\r\nfor OneIndex in range(0,LenOfLists):\r\n\tif NeedingName in ObjNames[OneIndex] and (DataTypes[OneIndex] in NeedindTypeList):\r\n\t\tListWithItems.append([ObjNames[OneIndex],PathsToParentFile[OneIndex],DataTypes[OneIndex],ObjHandles[OneIndex]])\r\n# Assign your output to the OUT variable.\r\nOUT = ListWithItems\r\n",
+      "Engine": "IronPython2",
+      "VariableInputPorts": true,
+      "Id": "4ef4314765154e3bbb04231608de8fd9",
+      "Inputs": [
+        {
+          "Id": "f4d0073942134a02adf64803135f27ac",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0ec0888c1c584c058e7edc3568daf18e",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0a9f5346fc984a0494a433223472065b",
+          "Name": "IN[2]",
+          "Description": "Input #2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e8d4372234b749d2b5b428e92f39edc4",
+          "Name": "IN[3]",
+          "Description": "Input #3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "23f43e75f740419da69cd6de0617dcdb",
+          "Name": "IN[4]",
+          "Description": "Input #4",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "91baa026dc3b42c3aebd9cacfb8cfd04",
+          "Name": "IN[5]",
+          "Description": "Input #5",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "63777208f8944e9abb5ddab08ef24303",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "NodeType": "PythonScriptNode",
+      "Code": "# Load the Python Standard and DesignScript Libraries\r\nimport sys\r\nimport clr\r\n\r\n# Add Assemblies for AutoCAD and Civil3D\r\nclr.AddReference('AcMgd')\r\nclr.AddReference('AcCoreMgd')\r\nclr.AddReference('AcDbMgd')\r\nclr.AddReference('AecBaseMgd')\r\nclr.AddReference('AecPropDataMgd')\r\nclr.AddReference('AeccDbMgd')\r\nclr.AddReference('AeccDataShortcutMgd')\r\n\r\n# Import references from AutoCAD\r\nfrom Autodesk.AutoCAD.ApplicationServices import *\r\nfrom Autodesk.AutoCAD.DatabaseServices import *\r\nfrom Autodesk.Civil.ApplicationServices import *\r\nfrom Autodesk.Civil.DataShortcuts import *\r\n\r\nToExport = list()\r\n\r\nadoc = Application.DocumentManager.MdiActiveDocument\r\neditor = adoc.Editor\r\n\r\nwith adoc.LockDocument():\r\n    with adoc.Database as db:\r\n        with db.TransactionManager.StartTransaction() as t:\r\n        \tfor OneItem in IN[0]:\r\n        \t\tDataShortcuts.CreateReference(db,OneItem[1],OneItem[0],OneItem[2])\r\n\t\tt.Commit()\r\n# Assign your output to the OUT variable.\r\nOUT = 0\r\n",
+      "Engine": "IronPython2",
+      "VariableInputPorts": true,
+      "Id": "302f26e96b964651bae00cd62b78d36f",
+      "Inputs": [
+        {
+          "Id": "561c268f55524c588eb71a829cbd1045",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "1333d55045694af49cc7f9b7ba1ab37c",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Civil3D_CustomNodes.DataShortcuts.GetAllElementsFromDSFolder@string",
+      "Id": "e9dffad861a54e0ba2ad0ca8f43844dd",
+      "Inputs": [
+        {
+          "Id": "5e3528e1ca004b80ac9c96deb51e7b7c",
+          "Name": "PathToDSDir",
+          "Description": "Absolute file-path to DataShortcuts folder\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "2730c58f225b473987b2ab347695b6f6",
+          "Name": "DataShortcutEntityType",
+          "Description": "Dictionary with info about objects (name, source drawing and Type)",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a55876ef77e24aef9ed4267a74422a6c",
+          "Name": "ParentDrawingPath",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "022723e242c0425a869b74f019b32f65",
+          "Name": "ObjName",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "49c3261f2acc4891b31c507509ab3166",
+          "Name": "HandleLow",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get all objects from data shortcuts's folder as xml-parse data\n\nDataShortcuts.GetAllElementsFromDSFolder (PathToDSDir: string): var[]..[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Autodesk.Civil.DataShortcuts.DataShortcutEntityType.Alignment",
+      "Id": "3aca226432d1429698399f2aae7be595",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "3cc159bf76514da1973cc4d75b3fe560",
+          "Name": "DataShortcutEntityType",
+          "Description": "DataShortcutEntityType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "DataShortcutEntityType.Alignment: DataShortcutEntityType"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Autodesk.Civil.DataShortcuts.DataShortcutEntityType.ViewFrameGroup",
+      "Id": "1e4d1b1e84644b50b276315bbea88aaf",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "00c4cd53a910484a8581e0f6a1bb586f",
+          "Name": "DataShortcutEntityType",
+          "Description": "DataShortcutEntityType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "DataShortcutEntityType.ViewFrameGroup: DataShortcutEntityType"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.CreateList, CoreNodeModels",
+      "VariableInputPorts": true,
+      "NodeType": "ExtensionNode",
+      "Id": "2debbb23608d4f698f57f5576b4f5ac2",
+      "Inputs": [
+        {
+          "Id": "39e44a3439824a0eb2fd0d11cda1a263",
+          "Name": "item0",
+          "Description": "Item Index #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0ba93bf985d545e7a9f1c924af046c87",
+          "Name": "item1",
+          "Description": "Item Index #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "12339629936a49f9a495e0cefcf7fab1",
+          "Name": "list",
+          "Description": "A list (type: var[]..[])",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Makes a new list out of the given inputs"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "1f2d90c3ef7b4df483a68cc9e54bacfc",
+      "End": "80d92c04d9924bcaa7e06b82ea0d6683",
+      "Id": "f662713716f046ef96af355a4fa2180e"
+    },
+    {
+      "Start": "da6b51848f864dddbaefc0c5ea7bf390",
+      "End": "5e3528e1ca004b80ac9c96deb51e7b7c",
+      "Id": "1b7c5caffc1045e498111cd57511481a"
+    },
+    {
+      "Start": "1452efcf334747599e260b4823716e99",
+      "End": "326b78abd2794d1faba1e2d80b2e1379",
+      "Id": "0c71eb20be4543558edb7506e5e881b9"
+    },
+    {
+      "Start": "89859a7b87e94325ad9e0ead069b28b6",
+      "End": "0a715a30aadf45a291c07a2cc8f1a2d4",
+      "Id": "2049d90b89c445a693fe0f1ca2df8daf"
+    },
+    {
+      "Start": "e0b17b9e6cd84c6caf8a787fd1b7aae4",
+      "End": "df0c2cb457e64b0bb366030444e35c06",
+      "Id": "1de0d9d1bad046538b82760048ff8fcb"
+    },
+    {
+      "Start": "228245dd674d46159d5f58ee15e9e993",
+      "End": "bf91ba7bc6c6404792a611c13a553166",
+      "Id": "effc7c24206a400ab6c7832809b9db90"
+    },
+    {
+      "Start": "e930ee0d97b8447f852f614dee828b98",
+      "End": "23f43e75f740419da69cd6de0617dcdb",
+      "Id": "364bda9c7dda4e65aead097ca77c22d5"
+    },
+    {
+      "Start": "63777208f8944e9abb5ddab08ef24303",
+      "End": "561c268f55524c588eb71a829cbd1045",
+      "Id": "ea9dac14f9f4448497b0ce7f0141ee1f"
+    },
+    {
+      "Start": "2730c58f225b473987b2ab347695b6f6",
+      "End": "f4d0073942134a02adf64803135f27ac",
+      "Id": "62be5dbe8b3f40c7983dee7c580bb860"
+    },
+    {
+      "Start": "a55876ef77e24aef9ed4267a74422a6c",
+      "End": "0ec0888c1c584c058e7edc3568daf18e",
+      "Id": "30a6621afc92446f96068ba39d5469fc"
+    },
+    {
+      "Start": "022723e242c0425a869b74f019b32f65",
+      "End": "0a9f5346fc984a0494a433223472065b",
+      "Id": "fcab66d713a24f1bbc21df3e82e2b6f9"
+    },
+    {
+      "Start": "49c3261f2acc4891b31c507509ab3166",
+      "End": "e8d4372234b749d2b5b428e92f39edc4",
+      "Id": "f4b305104f1c42d1b985df0f3268b9be"
+    },
+    {
+      "Start": "3cc159bf76514da1973cc4d75b3fe560",
+      "End": "39e44a3439824a0eb2fd0d11cda1a263",
+      "Id": "def363a3ae16405097ad63b9189b2533"
+    },
+    {
+      "Start": "00c4cd53a910484a8581e0f6a1bb586f",
+      "End": "0ba93bf985d545e7a9f1c924af046c87",
+      "Id": "236d08c7ceb44f2da71bba1ca1a06065"
+    },
+    {
+      "Start": "12339629936a49f9a495e0cefcf7fab1",
+      "End": "91baa026dc3b42c3aebd9cacfb8cfd04",
+      "Id": "2506283ecbc341ea9906105b432e3a91"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "2.12",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.12.0.5650",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "DataShortcuts_GetInfoAboutFolders",
+        "Id": "4232699efcf349c4baf6e0d5718b1617",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -63.720254177257232,
+        "Y": 429.9181509553286
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "GetFilePathToDS-folder",
+        "Id": "81f3d30508a1412f87fe0217498e9b92",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 628.35797786201078,
+        "Y": 395.69179199082879
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "f32a6ef0dff34796a59afcbb86076914",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 323.39063717165334,
+        "Y": 404.52791545747266
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "WhichElementsNeedSelect",
+        "Id": "f83791d1eddc40799eba6ea5e47adeee",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1290.6745816518371,
+        "Y": 525.92986292377225
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "GetItemsList",
+        "Id": "4ef4314765154e3bbb04231608de8fd9",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1592.3963095320055,
+        "Y": 374.3827008695369
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "InsertItemsToDrawing",
+        "Id": "302f26e96b964651bae00cd62b78d36f",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": true,
+        "Excluded": false,
+        "X": 1834.9693659640561,
+        "Y": 455.74530451515824
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "DataShortcuts.GetAllElementsFromDSFolder",
+        "Id": "e9dffad861a54e0ba2ad0ca8f43844dd",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 890.47164781269055,
+        "Y": 407.74176910854595
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "DataShortcutEntityType.Alignment",
+        "Id": "3aca226432d1429698399f2aae7be595",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 846.72709247770831,
+        "Y": 684.4574398098564
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "DataShortcutEntityType.ViewFrameGroup",
+        "Id": "1e4d1b1e84644b50b276315bbea88aaf",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 844.127373609427,
+        "Y": 770.17177324467309
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "NeedingElementsTypes",
+        "Id": "2debbb23608d4f698f57f5576b4f5ac2",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1254.9558788923023,
+        "Y": 699.84977684490161
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "fc23a83838c74284b70f0ea82a1cacd5",
+        "Title": "Get path to DS folder",
+        "Nodes": [
+          "81f3d30508a1412f87fe0217498e9b92",
+          "f32a6ef0dff34796a59afcbb86076914"
+        ],
+        "Left": 313.39063717165334,
+        "Top": 342.69179199082879,
+        "Width": 527.96734069035745,
+        "Height": 223.99999999999994,
+        "FontSize": 36.0,
+        "InitialTop": 395.69179199082879,
+        "InitialHeight": 153.83612346664387,
+        "TextblockHeight": 43.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "590e286509ee49e68a35eb19c56ea07a",
+        "Title": "Grouping elements by needing filter (here -> name of elements)",
+        "Nodes": [
+          "f83791d1eddc40799eba6ea5e47adeee",
+          "4ef4314765154e3bbb04231608de8fd9"
+        ],
+        "Left": 1280.6745816518371,
+        "Top": 306.3827008695369,
+        "Width": 457.72172788016837,
+        "Height": 301.99999999999994,
+        "FontSize": 24.0,
+        "InitialTop": 374.3827008695369,
+        "InitialHeight": 269.9053367975452,
+        "TextblockHeight": 58.0,
+        "Background": "#FFFFC999"
+      },
+      {
+        "Id": "65f0937eac3d4defbc76f7d1f1548bbf",
+        "Title": "Parse *.xml files to getting info about objects",
+        "Nodes": [
+          "e9dffad861a54e0ba2ad0ca8f43844dd"
+        ],
+        "Left": 880.47164781269055,
+        "Top": 267.74176910854595,
+        "Width": 359.00000000000011,
+        "Height": 310.99999999999994,
+        "FontSize": 36.0,
+        "InitialTop": 407.74176910854595,
+        "InitialHeight": 145.0,
+        "TextblockHeight": 130.0,
+        "Background": "#FFA4E1FF"
+      },
+      {
+        "Id": "6346cd0bf83f4110ba0e65920c490d4d",
+        "Title": "Initialize needing Types of Elements",
+        "Nodes": [
+          "3aca226432d1429698399f2aae7be595",
+          "1e4d1b1e84644b50b276315bbea88aaf",
+          "2debbb23608d4f698f57f5576b4f5ac2"
+        ],
+        "Left": 834.127373609427,
+        "Top": 631.4574398098564,
+        "Width": 634.82850528287531,
+        "Height": 231.71433343481669,
+        "FontSize": 36.0,
+        "InitialTop": 684.4574398098564,
+        "InitialHeight": 214.3515115875266,
+        "TextblockHeight": 43.0,
+        "Background": "#FF71C6A8"
+      },
+      {
+        "Id": "a286c6b4b79f4405a28b9123fd78ab67",
+        "Title": "Get info about DS folder path",
+        "Nodes": [
+          "4232699efcf349c4baf6e0d5718b1617"
+        ],
+        "Left": -73.720254177257232,
+        "Top": 333.9181509553286,
+        "Width": 303.0,
+        "Height": 200.00000000000006,
+        "FontSize": 36.0,
+        "InitialTop": 429.9181509553286,
+        "InitialHeight": 134.0,
+        "TextblockHeight": 86.0,
+        "Background": "#FF48B9FF"
+      }
+    ],
+    "X": 146.04952875069034,
+    "Y": -190.55506916099984,
+    "Zoom": 0.93354226724857581
+  }
+}
