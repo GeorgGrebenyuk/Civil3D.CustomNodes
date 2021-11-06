@@ -16,6 +16,7 @@ using Autodesk.AutoCAD.Runtime;
 using Autodesk.Civil.DataShortcuts;
 using static Autodesk.Civil.DataShortcuts.DataShortcuts.DataShortcutManager;
 using Autodesk.DesignScript.Runtime;
+using System.Globalization;
 
 namespace Civil3D_CustomNodes
 {
@@ -29,33 +30,61 @@ namespace Civil3D_CustomNodes
 		/// <returns>Dictionary with info about objects (name, source drawing and Type)</returns>
 		[MultiReturn(new[] { "DataShortcutEntityType", "ParentDrawingPath", "ObjName", "HandleLow" })]
 		public static Dictionary<string, object> GetAllElementsFromDSFolder(string PathToDSDir)
-		{
+		{			
 			List<DataShortcutEntityType> DTypes = new List<DataShortcutEntityType>();
+			List<string> DTypes_Temp = new List<string>();
+
 			List<string> PathsToDWG = new List<string>();
 			List<string> NamesOfObjects = new List<string>();
 			List<int> HandleLowValies = new List<int>();
-
-			foreach (string OneXmlFilePath in Directory.GetFiles(PathToDSDir,"*.xml",SearchOption.AllDirectories))
+			//Проверим, есть ли в папке БС база данных от прошлой итерации
+			//Временно не учитываем версионность - как есть
+			string PathTo_DTypes = PathToDSDir + "\\CustomNodesDB_DTypes.txt";
+			string PathTo_PathsToDWG = PathToDSDir + "\\CustomNodesDB_PathsToDWG.txt";
+			string PathTo_NamesOfObjects = PathToDSDir + "\\CustomNodesDB_NamesOfObjects.txt";
+			string PathTo_HandleLowValies = PathToDSDir + "\\CustomNodesDB_HandleLowValies.txt";
+			if (File.Exists(PathTo_DTypes) && File.Exists(PathTo_PathsToDWG) && File.Exists(PathTo_NamesOfObjects)&& File.Exists(PathTo_HandleLowValies))
 			{
-				if (Path.GetFileNameWithoutExtension(OneXmlFilePath) != "ShortcutsHistory")
+				DTypes_Temp = File.ReadAllLines(PathTo_DTypes).OfType<string>().ToList();
+				foreach (string OneDTypeStr in DTypes_Temp)
 				{
-					XDocument XmlDoc = XDocument.Load(OneXmlFilePath);
-					//Find a parent drawing:
-					XElement ParentDrawingEl = XmlDoc.Descendants().Where(a => a.Name.LocalName == "File").First();
-					string ParentDrawingPath = ParentDrawingEl.Attribute("name").Value;
-					//Find an element name and type
-					XElement ObjEl = XmlDoc.Descendants().Where(a => a.Name.LocalName == "Object").First();
-					string ObjName = ObjEl.Attribute("name").Value;
-					string ObjType = ObjEl.Attribute("type").Value;
-					int LowHandleValue =Convert.ToInt32( ObjEl.Attribute("handleLow").Value);
-					DataShortcutEntityType DType = GetDSEnityType(ObjType);
-
-					DTypes.Add(DType);
-					PathsToDWG.Add(ParentDrawingPath);
-					NamesOfObjects.Add(ObjName);
-					HandleLowValies.Add(LowHandleValue);
+					DTypes.Add(GetDSEnityType_Str(OneDTypeStr));
 				}
+				PathsToDWG = File.ReadAllLines(PathTo_PathsToDWG).OfType<string>().ToList();
+				NamesOfObjects = File.ReadAllLines(PathTo_NamesOfObjects).OfType<string>().ToList();
+				HandleLowValies = File.ReadAllLines(PathTo_HandleLowValies).Select(x => int.Parse(x, CultureInfo.GetCultureInfo("en-US"))).ToArray().OfType<int>().ToList();
 			}
+			
+			else
+			{
+				foreach (string OneXmlFilePath in Directory.GetFiles(PathToDSDir,"*.xml",SearchOption.AllDirectories))
+				{
+					if (Path.GetFileNameWithoutExtension(OneXmlFilePath) != "ShortcutsHistory")
+					{
+						XDocument XmlDoc = XDocument.Load(OneXmlFilePath);
+						//Find a parent drawing:
+						XElement ParentDrawingEl = XmlDoc.Descendants().Where(a => a.Name.LocalName == "File").First();
+						string ParentDrawingPath = ParentDrawingEl.Attribute("name").Value;
+						//Find an element name and type
+						XElement ObjEl = XmlDoc.Descendants().Where(a => a.Name.LocalName == "Object").First();
+						string ObjName = ObjEl.Attribute("name").Value;
+						string ObjType = ObjEl.Attribute("type").Value;
+						int LowHandleValue = Convert.ToInt32( ObjEl.Attribute("handleLow").Value);
+						DataShortcutEntityType DType = GetDSEnityType(ObjType);
+						DTypes_Temp.Add(ObjType);
+
+						DTypes.Add(DType);
+						PathsToDWG.Add(ParentDrawingPath);
+						NamesOfObjects.Add(ObjName);
+						HandleLowValies.Add(LowHandleValue);
+					}
+				}
+				File.WriteAllText(PathTo_DTypes,string.Join( "\r\n", DTypes_Temp));
+				File.WriteAllText(PathTo_PathsToDWG,string.Join("\r\n", PathsToDWG));
+				File.WriteAllText(PathTo_NamesOfObjects,string.Join("\r\n", NamesOfObjects));
+				File.WriteAllText(PathTo_HandleLowValies,string.Join("\r\n", HandleLowValies));
+			}
+
 			//Создаем списки из словарей под каждый элемент
 			return new Dictionary<string, object>
 			{
@@ -97,7 +126,38 @@ namespace Civil3D_CustomNodes
 					DType = DataShortcutEntityType.Surface;
 					break;
 			}
-
+			return DType;
+		}
+		private static DataShortcutEntityType GetDSEnityType_Str(string FolderName)
+		{
+			DataShortcutEntityType DType = 0;
+			switch (FolderName)
+			{
+				case "Alignment":
+					DType = DataShortcutEntityType.Alignment;
+					break;
+				case "PipeNetwork":
+					DType = DataShortcutEntityType.PipeNetwork;
+					break;
+				case "PressurePipeNetwork":
+					DType = DataShortcutEntityType.PressurePipeNetwork;
+					break;
+				case "Corridor":
+					DType = DataShortcutEntityType.Corridor;
+					break;
+				case "Profile":
+					DType = DataShortcutEntityType.Profile;
+					break;
+				case "SampleLineGroup":
+					DType = DataShortcutEntityType.SampleLineGroup;
+					break;
+				case "ViewFrameGroup":
+					DType = DataShortcutEntityType.ViewFrameGroup;
+					break;
+				case "Surface":
+					DType = DataShortcutEntityType.Surface;
+					break;
+			}
 			return DType;
 		}
 		/// <summary>
