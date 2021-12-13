@@ -80,6 +80,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataShortcuts.cs" />
+    <Compile Include="Geometry.cs" />
     <Compile Include="Landxml.cs" />
     <Compile Include="ProjectProperties.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -88,4 +89,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>XCOPY "$(TargetDir)*" "C:\Users\Georg\AppData\Roaming\Autodesk\C3D 2022\Dynamo\2.12\packages\Civil3D.CustomNodes\bin\" /S /Y</PostBuildEvent>
+  </PropertyGroup>
 </Project>
