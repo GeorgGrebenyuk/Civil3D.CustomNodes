@@ -21,11 +21,11 @@ namespace Autodesk.Civil3D_CustomNodes
     {
 		private Landxml() { }
 		//[CommandMethod("ConvertLandXmlStructure")]
-		public static void ConvertLandXmlStructure_1(Autodesk.AutoCAD.DynamoNodes.Document doc_dyn, string PathToCurrentFile)
+		public static void ConvertLandXmlStructure_1(string PathToCurrentFile)
 		{
-			Document doc = doc_dyn.AcDocument;
+			//Document doc = doc_dyn.AcDocument;
 			var CivilApp = CivilApplication.ActiveDocument;
-			//Document doc = Application.DocumentManager.MdiActiveDocument;
+			Document doc = Application.DocumentManager.MdiActiveDocument;
 			Database db = doc.Database;
 			Editor ed = doc.Editor;
 
@@ -124,11 +124,11 @@ namespace Autodesk.Civil3D_CustomNodes
 			doc_LandXmlNew.Save(NewFilePath);
 
 		}
-		public static void CreateSurfaces(Autodesk.AutoCAD.DynamoNodes.Document doc_dyn)
+		public static void CreateSurfaces()
 		{
-			Document doc = doc_dyn.AcDocument;
+			//Document doc = doc_dyn.AcDocument;
 			var CivilApp = CivilApplication.ActiveDocument;
-			//Document doc = Application.DocumentManager.MdiActiveDocument;
+			Document doc = Application.DocumentManager.MdiActiveDocument;
 			Database db = doc.Database;
 			Editor ed = doc.Editor;
 
@@ -165,11 +165,11 @@ namespace Autodesk.Civil3D_CustomNodes
 			}
 		}
 		//[CommandMethod("AddDataToSurfaces")]
-		public static void AddDataToSurfaces(Autodesk.AutoCAD.DynamoNodes.Document doc_dyn, double midOrdinate = 0.1, double maxDist = 10.0, double weedingDist = 0.1, double weedingAngle = 0.5)
+		public static void AddDataToSurfaces(double midOrdinate = 0.1, double maxDist = 10.0, double weedingDist = 0.1, double weedingAngle = 0.5)
 		{
-			Document doc = doc_dyn.AcDocument;
+			//Document doc = doc_dyn.AcDocument;
 			var CivilApp = CivilApplication.ActiveDocument;
-			//Document doc = Application.DocumentManager.MdiActiveDocument;
+			Document doc = Application.DocumentManager.MdiActiveDocument;
 			Database db = doc.Database;
 			Editor ed = doc.Editor;
 			//double midOrdinate = 0.1; double maxDist = 10.0; double weedingDist = 0.1; double weedingAngle = 0.5; -- if start as CommandMethod

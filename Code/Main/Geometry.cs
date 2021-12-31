@@ -32,23 +32,23 @@ namespace Autodesk.Civil3D_CustomNodes
         /// <param name="doc_dyn"></param>
         /// <param name="Pdmode">Integer type of point</param>
         /// <param name="Psize">Size of point</param>
-        public static void SetAcadPointsStyle (Autodesk.AutoCAD.DynamoNodes.Document doc_dyn, int Pdmode = 34, double Psize = 0.2)
+        public static void SetAcadPointsStyle (int Pdmode = 34, double Psize = 0.2)
         {
             //
             //http://docs.autodesk.com/ACD/2010/ENU/AutoCAD%20.NET%20Developer%27s%20Guide/files/WS1a9193826455f5ff2566ffd511ff6f8c7ca-415b.htm
-            Document doc = doc_dyn.AcDocument;
-            //Document doc = Application.DocumentManager.MdiActiveDocument;
+            //Document doc = doc_dyn.AcDocument;
+            Document doc = Application.DocumentManager.MdiActiveDocument;
             Database db = doc.Database;
-            //using (DocumentLock acDocLock = doc.LockDocument())
-            //{
-
-            //}
-            using (Transaction tr = db.TransactionManager.StartTransaction())
+            using (DocumentLock acDocLock = doc.LockDocument())
             {
-                db.Pdmode = Pdmode;
-                db.Pdsize = Psize;
-                tr.Commit();
+                using (Transaction tr = db.TransactionManager.StartTransaction())
+                {
+                    db.Pdmode = Pdmode;
+                    db.Pdsize = Psize;
+                    tr.Commit();
+                }
             }
+
         }
         public static ObjectId CreateAcadPoint (Autodesk.AutoCAD.DynamoNodes.Document doc_dyn, DynGeom.Point Point_position, bool IncludeZ = true)
         {

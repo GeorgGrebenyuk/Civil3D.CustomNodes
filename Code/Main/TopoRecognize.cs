@@ -31,9 +31,10 @@ namespace Autodesk.Civil3D_CustomNodes
             return Math.Sqrt(Math.Pow(p1.X - p2.X, 2) + Math.Pow(p1.Y - p2.Y, 2));
         }
         [MultiReturn(new[] { "LineId", "LineEndPoint"})]
-        public static Dictionary <string,object> GetLineIdBetweenLines(Document doc, ds_g.Point pnt, List<ObjectId> all_objects, List<ObjectId> arrow_lines, double SearchRadius = 0.01)
+        public static Dictionary <string,object> GetLineIdBetweenLines(Autodesk.AutoCAD.DynamoNodes.Document doc_dyn, ds_g.Point pnt, List<ObjectId> all_objects, List<ObjectId> arrow_lines, double SearchRadius = 0.01)
         {
             //Document doc = Application.DocumentManager.MdiActiveDocument;
+            Document doc = doc_dyn.AcDocument;
             Database db = doc.Database;
             Point3d pnt_acad = new Point3d(pnt.X, pnt.Y, 0.0);
 
