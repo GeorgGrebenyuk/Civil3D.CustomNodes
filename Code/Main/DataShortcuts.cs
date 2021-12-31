@@ -18,7 +18,7 @@ using static Autodesk.Civil.DataShortcuts.DataShortcuts.DataShortcutManager;
 using Autodesk.DesignScript.Runtime;
 using System.Globalization;
 
-namespace Civil3D_CustomNodes
+namespace Autodesk.Civil3D_CustomNodes
 {
 	public class DataShortcuts
 	{
