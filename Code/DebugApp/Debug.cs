@@ -12,19 +12,20 @@ using Autodesk.AutoCAD.Geometry;
 using Autodesk.AutoCAD.Runtime;
 using Autodesk.Civil.DataShortcuts;
 using System.Globalization;
-
-using Civil3D_CustomNodes;
-
+using RTree;
+using Autodesk.Civil3D_CustomNodes;
+using DynamoRTree;
 
 namespace DebugApp
 {
     public class Debug
     {
-        [CommandMethod("test1")]
+        [CommandMethod("test2")]
         public static void RunTest()
         {
-            //Selection.SelectGeometryByRectangle("Водосток", 0.58497763, -0.3, 0.7, 1.1, "LINE", true); //0.63, 0.952
-            Selection.debug_only();
+            var dict = Selection.SelectObjectsByConditions(new Dictionary<string, string> { { "0", "3DSOLID" } });
+            Console.Write(dict.Count());
+            //var dict2 = Solids.GetSolid3dFacesCentroids(dict[0], true);
         }
     }
 }
