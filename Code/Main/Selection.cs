@@ -14,10 +14,10 @@ using Autodesk.Civil.DataShortcuts;
 using Autodesk.DesignScript.Runtime;
 using ds_g = Autodesk.DesignScript.Geometry;
 using System.Globalization;
-using RTree;
 using DynamoRTree;
+using dyn = Autodesk.AutoCAD.DynamoNodes;
 
-namespace Civil3D_CustomNodes
+namespace Autodesk.Civil3D_CustomNodes
 {
     public class Selection
     {
@@ -46,33 +46,83 @@ namespace Civil3D_CustomNodes
             };
         }
         /// <summary>
-        /// Get list with AutoCAD's internal ObjectId for input object collection
+        /// Getting new ObjectId collection with objects which length are satisfy "needing_length"
+        /// </summary>
+        /// <param name="objects_id">List with ObjectId</param>
+        /// <param name="needing_length">if 1 value -> search all line's that length is equal current;
+        /// if 2 value -> search all line's that length is more first and less second; if 3 and more values -> search all line's that length is equal one of current list</param>
+        /// <returns>List with ObjectId</returns>
+        public static List<ObjectId> GetLinesByLength (Autodesk.AutoCAD.DynamoNodes.Document doc_dyn, List<ObjectId> objects_id, List<double> needing_length, int Accuracy = 8)
+        {
+            Document doc = doc_dyn.AcDocument;
+            for (int i1 = 0; i1 < needing_length.Count; i1++)
+            {
+                double OneCheckeNum = needing_length[i1];
+                needing_length[i1] = Math.Round(OneCheckeNum, Accuracy);
+            }
+            //Document doc = Application.DocumentManager.MdiActiveDocument;
+            Database db = doc.Database;
+            List<Autodesk.AutoCAD.DynamoNodes.Object> AcadObjects = new List<Autodesk.AutoCAD.DynamoNodes.Object>();
+            List<ObjectId> selected_objects = new List<ObjectId>();
+            using (DocumentLock acDocLock = doc.LockDocument())
+            {
+                using (Transaction tr = db.TransactionManager.StartTransaction())
+                {
+                    foreach (ObjectId line_id in objects_id)
+                    {
+                        Autodesk.AutoCAD.DatabaseServices.Line OneObject = tr.GetObject(line_id, OpenMode.ForRead) as Autodesk.AutoCAD.DatabaseServices.Line;
+                        //if (LineType == 1) OneObject = OneObject as Polyline;
+                        //else if (LineType == 2) OneObject = OneObject as Arc;
+                        //else OneObject = OneObject as Line;
+                        double LineLen = Math.Round(OneObject.Length, Accuracy);
+                        //Autodesk.AutoCAD.DatabaseServices.Line OneObject = tr.GetObject(line_id, OpenMode.ForRead) as Autodesk.AutoCAD.DatabaseServices.Line;
+                        if (needing_length.Count == 1 && LineLen == needing_length[0])
+                        {
+                            selected_objects.Add(line_id);
+                        }
+                        else if (needing_length.Count == 2 && LineLen >= needing_length[0] && LineLen <= needing_length[1])
+                        {
+                            selected_objects.Add(line_id);
+                        }
+                        else if (needing_length.Contains(LineLen)) selected_objects.Add(line_id);
+                    } 
+                    tr.Commit();
+                }
+            }
+            return selected_objects;
+        }
+        /// <summary>
+        /// Get list with AutoCAD's internal ObjectId for input object collection (their's handle)
         /// </summary>
         /// <param name="acad_objects_list">Input AutoCAD's objects</param>
-        /// <returns>List witj ObjectId for objects</returns>
-        [MultiReturn(new[] { "acad_objects_list" })]
-        public static List<ObjectId> GetObjectIdsByObjects_AcadObj (List<Autodesk.AutoCAD.DatabaseServices.DBObject> acad_objects_list)
+        /// <returns>List witj ObjectId for objects</returns>]
+        public static List<ObjectId> GetObjectIdsByObjects_AcadObj (Autodesk.AutoCAD.DynamoNodes.Document doc_dyn, List<Autodesk.AutoCAD.DynamoNodes.Object> acad_objects_list)
         {
-            
-            Document doc = Application.DocumentManager.MdiActiveDocument;
+            Document doc = doc_dyn.AcDocument;
+            //Document doc = Application.DocumentManager.MdiActiveDocument;
             Editor ed = doc.Editor;
             Database db = doc.Database;
             List<ObjectId> ObjectIdsByObjects_AcadObjs = new List<ObjectId>();
-            using (Transaction tr = db.TransactionManager.StartTransaction())
+            using (DocumentLock acDocLock = doc.LockDocument())
             {
-                foreach (Autodesk.AutoCAD.DatabaseServices.DBObject line_id in acad_objects_list)
+                using (Transaction tr = db.TransactionManager.StartTransaction())
                 {
-                    ObjectIdsByObjects_AcadObjs.Add(line_id.ObjectId);
+                    foreach (Autodesk.AutoCAD.DynamoNodes.Object obj_instance in acad_objects_list)
+                    {
+                        long obj_handle = Convert.ToInt64(obj_instance.Handle, 16);
+                        ObjectId id = db.GetObjectId(false, new Handle(obj_handle), 0);
+                        ObjectIdsByObjects_AcadObjs.Add(id);
+                    }
+                    tr.Commit();
                 }
-                tr.Commit();
             }
             return ObjectIdsByObjects_AcadObjs;
         }
         /// <summary>
-        /// DANGEROUS!!!. Can create a FATAL or internal error. Read's mode (OpenMode.ForRead) as tag of returning objects after closing transaction
+        /// Read's mode (OpenMode.ForRead) as tag of returning objects after closing transaction
         /// </summary>
         /// <returns>OpenMode.ForRead</returns>
-        
+
         public static OpenMode ModeForRead () { return OpenMode.ForRead; }
         /// <summary>
         /// DANGEROUS!!!. Can create a FATAL or internal error. Write's mode (OpenMode.ForWrite) as tag of returning objects after closing transaction
@@ -85,14 +135,13 @@ namespace Civil3D_CustomNodes
         /// <param name="objects_id">List with ObjectId</param>
         /// <param name="mode">OpenMode (read or write) -- actions after returning objects</param>
         /// <returns>Autodesk.AutoCAD.DatabaseServices.DBObject list</returns>
-        [MultiReturn(new[] { "AcadObjects" })]
-        public static List<Autodesk.AutoCAD.DatabaseServices.DBObject> GetAcadObjectsByObjectsId (List<ObjectId> objects_id, OpenMode mode)
+        public static List<Autodesk.AutoCAD.DynamoNodes.Object> GetAcadObjectsByObjectsId (Autodesk.AutoCAD.DynamoNodes.Document doc_dyn, List<ObjectId> objects_id, OpenMode mode)
         {
-            //Не работает
-            Document doc = Application.DocumentManager.MdiActiveDocument;
-            Editor ed = doc.Editor;
+            Document doc = doc_dyn.AcDocument;
+            //Document doc = Application.DocumentManager.MdiActiveDocument;
             Database db = doc.Database;
-            List<Autodesk.AutoCAD.DatabaseServices.DBObject> AcadObjects = new List<Autodesk.AutoCAD.DatabaseServices.DBObject>();
+            List<Autodesk.AutoCAD.DynamoNodes.Object> AcadObjects = new List<Autodesk.AutoCAD.DynamoNodes.Object>();
+            List<string> handle_list = new List<string>();
             using (DocumentLock acDocLock = doc.LockDocument())
             {
                 using (Transaction tr = db.TransactionManager.StartTransaction())
@@ -100,29 +149,21 @@ namespace Civil3D_CustomNodes
                     foreach (ObjectId line_id in objects_id)
                     {
                         Autodesk.AutoCAD.DatabaseServices.DBObject OneObject = tr.GetObject(line_id, mode);
-                        AcadObjects.Add(OneObject);
+                        Handle obj_handle = OneObject.Handle;
+                        handle_list.Add(obj_handle.ToString());
                     }
                     tr.Commit();
                 }
             }
-
+            foreach (string OneObjHandle in handle_list)
+            {
+                AcadObjects.Add(dyn.SelectionByQuery.GetObjectByObjectHandle(OneObjHandle));
+            }
             return AcadObjects;
         }
-        
-        public static void debug_only ()
-        {
-            List<ObjectId> coll = SelectObjectsByConditions(new Dictionary<string, string>()
-            {
-                {((int)DxfCode.Start).ToString(), "LINE" }, {((int)DxfCode.LayerName).ToString(),"Водосток"}
-            } );
-            //List<ObjectId> ids;
-            //List<RTree.Rectangle> rects;
-            Dictionary<string,object> dict = RTree_acad.GetRTReeRectangleByObjects(coll);
-            RTree<ObjectId> tree = RTree_acad.CreateRTreeByRTreeRectangles(dict);
 
 
-            GetObjectsByCirclesSearching(coll,tree, new List<double>(2) { 0.03699437, 0.03907046 }, 0.5,1.0,0, true);
-        }
+
         /// <summary>
         /// Creating "search pattern" by dxf code (GetDxfCodesToTypedValues) and string's data. Read developer docs!
         /// </summary>
@@ -142,90 +183,7 @@ namespace Civil3D_CustomNodes
             else return null;
         }
 
-        /// <summary>
-        /// Auxilary node that delete or choosing drawing's linear objects in selected area by each (Radius value) 
-        /// non more than MaxLength's value and (if SearchMode =0) which length is equal at least one of value in LineLength's list or (if SearchMode =1)
-        /// which length is more than LineLengt[0] and smaller than LineLengt[1]
-        /// </summary>
-        /// <param name="obj_group">List with object's id</param>
-        /// <param name="tree">RTree</param>
-        /// <param name="LineLength">Double array with at least two numbers</param>
-        /// <param name="MaxLength">Maximum length of line</param>
-        /// <param name="Radius">Value of searching's value</param>
-        /// <param name="SearchMode">Mode for work with LineLength, read node's description</param>
-        /// <param name="NeedDeleteObjects">Boolean, if true -- selected objects will be removed</param>
-        public static List<ObjectId> GetObjectsByCirclesSearching (List<ObjectId> obj_group, RTree<ObjectId> tree, List<double> LineLength,  double MaxLength, double Radius, int SearchMode = 0, bool NeedDeleteObjects = false)
-        {
-            Document doc = Application.DocumentManager.MdiActiveDocument;
-            Editor ed = doc.Editor;
-            Database db = doc.Database;
-            int debug_counter1 = 0;
-
-            //Индексируем все отрезки чертежа
-            //Dictionary<ObjectId, RTree.Rectangle> rect_list = RTree_acad.GetRTReeRectangleByObjects (obj_group.ToList());
-            //RTree<ObjectId> drawings_lines = RTree_acad.CreateRTreeByRTreeRectangles(rect_list);
-
-            //Список для удаления объектов
-            List<ObjectId> lines_for_deleting = new List<ObjectId>();
-            using (Transaction tr = db.TransactionManager.StartTransaction())
-            {
-                foreach (ObjectId line_id in obj_group)
-                {
-                    Autodesk.AutoCAD.DatabaseServices.Line OneLine = tr.GetObject(line_id, OpenMode.ForRead) as Autodesk.AutoCAD.DatabaseServices.Line;
-                    bool IsObjectValid = false;
-                    double LineLen = Math.Round(OneLine.Length, 8);
-                    if (SearchMode == 0)
-                    {
-                        if (LineLength.Contains(LineLen)) IsObjectValid = true;
-                    }
-                    else if (SearchMode == 1)
-                    {
-                        if (LineLen >= LineLength[0] && LineLen <= LineLength[1]) IsObjectValid = true;
-                    }
-                    if (IsObjectValid)
-                    {
-                        Point3d line_start = OneLine.StartPoint; Point3d line_end = OneLine.EndPoint;
-                        Point3d line_center = new Point3d(new double[3] { (line_start.X + line_end.X) / 2.0, (line_start.Y + line_end.Y) / 2.0, 0 });
-                        double[] pnt = new double[3] { line_center.X, line_center.Y, 0 };
-
-                        List<ObjectId> intersects_lines = RTree_acad.GetObgects_Intersects(tree, RTree_acad.GetRTReeRectangleByPoint(pnt, (float)Radius));
-                        List<ObjectId> internal_lines = RTree_acad.GetObgects_Contains(tree, RTree_acad.GetRTReeRectangleByPoint(pnt, (float)Radius));
-                        AddLines(intersects_lines); AddLines(internal_lines);
-                        void AddLines(List<ObjectId> IndexedList)
-                        {
-                            foreach (ObjectId OneCode in IndexedList)
-                            {
-                                Autodesk.AutoCAD.DatabaseServices.Line OneLine2 = tr.GetObject(OneCode, OpenMode.ForRead) as Autodesk.AutoCAD.DatabaseServices.Line;
-                                if (!lines_for_deleting.Contains(OneCode) && OneLine2.Length < 1) lines_for_deleting.Add(OneCode);
-                            }
-                        }
-
-                        debug_counter1++;
-                    }
-                }
-
-                tr.Commit();
-            }
-            if (NeedDeleteObjects == true && lines_for_deleting.Count > 0)
-            {
-                using (DocumentLock acDocLock = doc.LockDocument())
-                {
-                    using (Transaction tr = db.TransactionManager.StartTransaction())
-                    {
-                        foreach (ObjectId line_id in lines_for_deleting)
-                        {
-                            Autodesk.AutoCAD.DatabaseServices.DBObject OneObject = tr.GetObject(line_id, OpenMode.ForWrite) as Autodesk.AutoCAD.DatabaseServices.DBObject;
-                            OneObject.Erase(true);
-                        }
-                        tr.Commit();
-                    }
-                }
-               
-                return null;
-            }
-            else return lines_for_deleting;
-
-        }
+        
        
        
 
