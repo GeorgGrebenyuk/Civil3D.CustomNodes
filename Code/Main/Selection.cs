@@ -91,6 +91,28 @@ namespace Autodesk.Civil3D_CustomNodes
             }
             return selected_objects;
         }
+        public static List<string> GetHandlesByObjectsId (Autodesk.AutoCAD.DynamoNodes.Document doc_dyn, List<ObjectId> objects_id)
+        {
+            Document doc = doc_dyn.AcDocument;
+            //Document doc = Application.DocumentManager.MdiActiveDocument;
+            Editor ed = doc.Editor;
+            Database db = doc.Database;
+            List<string> HandlesByObjectsId = new List<string>();
+            using (DocumentLock acDocLock = doc.LockDocument())
+            {
+                using (Transaction tr = db.TransactionManager.StartTransaction())
+                {
+                    foreach (ObjectId id in objects_id)
+                    {
+                        //long obj_handle = id.Handle;
+                        HandlesByObjectsId.Add($"{id.Handle}");
+                    }
+                    tr.Commit();
+                }
+            }
+            return HandlesByObjectsId;
+
+        }
         /// <summary>
         /// Get list with AutoCAD's internal ObjectId for input object collection (their's handle)
         /// </summary>
