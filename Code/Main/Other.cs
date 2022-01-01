@@ -106,10 +106,10 @@ namespace Autodesk.Civil3D_CustomNodes
         /// Get document's materials with their names and ObjectId
         /// </summary>
         /// <returns></returns>
-        public static Dictionary<string, ObjectId> GetMaterials ()
+        public static Dictionary<string, ObjectId> GetMaterials (Autodesk.AutoCAD.DynamoNodes.Document doc_dyn)
         {
-            Document doc = Application.DocumentManager.MdiActiveDocument;
-            //Document doc = doc_dyn.AcDocument;
+            //Document doc = Application.DocumentManager.MdiActiveDocument;
+            Document doc = doc_dyn.AcDocument;
             Database db = doc.Database;
             Dictionary<string, ObjectId> MaterialAndName = new Dictionary<string, ObjectId>();
 

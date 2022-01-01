@@ -50,6 +50,13 @@ namespace Autodesk.Civil3D_CustomNodes
             }
 
         }
+        /// <summary>
+        /// Create AutoCAD's object-point by Dynamo's point and option include Z-cordinate. Return an object id of item.
+        /// </summary>
+        /// <param name="doc_dyn"></param>
+        /// <param name="Point_position"></param>
+        /// <param name="IncludeZ"></param>
+        /// <returns></returns>
         public static ObjectId CreateAcadPoint (Autodesk.AutoCAD.DynamoNodes.Document doc_dyn, DynGeom.Point Point_position, bool IncludeZ = true)
         {
 

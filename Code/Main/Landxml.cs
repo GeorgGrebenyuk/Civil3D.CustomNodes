@@ -21,6 +21,10 @@ namespace Autodesk.Civil3D_CustomNodes
     {
 		private Landxml() { }
 		//[CommandMethod("ConvertLandXmlStructure")]
+		/// <summary>
+		/// Change structure of LandXML file (move breaklins from surfaces to PlanFeatures
+		/// </summary>
+		/// <param name="PathToCurrentFile"></param>
 		public static void ConvertLandXmlStructure_1(string PathToCurrentFile)
 		{
 			//Document doc = doc_dyn.AcDocument;
@@ -124,6 +128,9 @@ namespace Autodesk.Civil3D_CustomNodes
 			doc_LandXmlNew.Save(NewFilePath);
 
 		}
+		/// <summary>
+		/// Create surfaces by PlanFeatures' names (as empty structures)
+		/// </summary>
 		public static void CreateSurfaces()
 		{
 			//Document doc = doc_dyn.AcDocument;
@@ -165,6 +172,13 @@ namespace Autodesk.Civil3D_CustomNodes
 			}
 		}
 		//[CommandMethod("AddDataToSurfaces")]
+		/// <summary>
+		/// Adding data from PlanFeatures (character lines) to surfaces and also inser PointsCogoGrous to surfaces
+		/// </summary>
+		/// <param name="midOrdinate"></param>
+		/// <param name="maxDist"></param>
+		/// <param name="weedingDist"></param>
+		/// <param name="weedingAngle"></param>
 		public static void AddDataToSurfaces(double midOrdinate = 0.1, double maxDist = 10.0, double weedingDist = 0.1, double weedingAngle = 0.5)
 		{
 			//Document doc = doc_dyn.AcDocument;

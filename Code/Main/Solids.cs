@@ -39,11 +39,11 @@ namespace Autodesk.Civil3D_CustomNodes
             return new Point3d(p_x / FaceType, p_y / FaceType, p_z / FaceType);
         }
         /// <summary>
-        /// Convert Dynamo's point to string with accuracy
+        /// Convert AutoCAD's Point3d point to string with accuracy
         /// </summary>
         /// <param name="point"></param>
         /// <returns></returns>
-        public static string GetPointStringRepresentation (Point3d point, int Precision)
+        private static string GetPointStringRepresentation (Point3d point, int Precision)
         {
             return $"{CoordCut(point.X)}_{CoordCut(point.Y)}_{CoordCut(point.Z)}";
             double CoordCut (double coord)
@@ -51,8 +51,15 @@ namespace Autodesk.Civil3D_CustomNodes
                 return Math.Round(coord, Precision);
             }
         }
+        /// <summary>
+        /// Get all centroids by faces of solid3d as Dictionary with faces's centroid coordinates (Dynamo point) and identificators (solid's handle and face's id)
+        /// </summary>
+        /// <param name="doc_dyn">Currnt document</param>
+        /// <param name="solids_id_list">List with solid3d's ObjectId</param>
+        /// <param name="FaceType">Count edges in face; as default =3</param>
+        /// <returns>Dictionary with faces's centroid coordinates (Dynamo point) and identificators (solid's handle and face's id)</returns>
         [MultiReturn(new[] { "FacesId", "FacesCentroid" })]
-        public static Dictionary<string, object> GetSolid3dFacesCentroids (Autodesk.AutoCAD.DynamoNodes.Document doc_dyn, List<ObjectId> solids_id_list, int FaceType = 3,  bool CreatePoints = false) //List <Dictionary<string, object>>
+        public static Dictionary<string, object> GetSolid3dFacesCentroids (Autodesk.AutoCAD.DynamoNodes.Document doc_dyn, List<ObjectId> solids_id_list, int FaceType = 3) //List <Dictionary<string, object>>
         {
 
             //Document doc = Application.DocumentManager.MdiActiveDocument;
@@ -149,6 +156,15 @@ namespace Autodesk.Civil3D_CustomNodes
         }
 
         //[Obsolete]
+        /// <summary>
+        /// Assign to each face by it's identificator a color or materials by boolean. 
+        /// </summary>
+        /// <param name="doc_dyn">Current document</param>
+        /// <param name="solids_id_list">List with solid3d ObjectId</param>
+        /// <param name="faces_info_list">List with Dictionaries for each solid (created in Python script).</param>
+        /// <param name="MaterialsByName">Dictionary with materials for names</param>
+        /// <param name="ColorsByNames">Dictionary with colors for names</param>
+        /// <param name="UseColors">If true - using colors; else -- materials</param>
         public static void SetMaterialByFacesCentroids (Autodesk.AutoCAD.DynamoNodes.Document doc_dyn, List<ObjectId> solids_id_list, List<Dictionary <string,string>> faces_info_list, 
             Dictionary <string, ObjectId> MaterialsByName, Dictionary<string, Autodesk.AutoCAD.Colors.Color> ColorsByNames, bool UseColors = false)
         {

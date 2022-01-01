@@ -38,6 +38,8 @@ namespace Autodesk.Civil3D_CustomNodes
 			List<string> NamesOfObjects = new List<string>();
 			List<int> HandleLowValies = new List<int>();
 			//Проверим, есть ли в папке БС база данных от прошлой итерации
+			bool IsFolderWasUpdated = false;
+
 			//Временно не учитываем версионность - как есть
 			string PathTo_DTypes = PathToDSDir + "\\CustomNodesDB_DTypes.txt";
 			string PathTo_PathsToDWG = PathToDSDir + "\\CustomNodesDB_PathsToDWG.txt";

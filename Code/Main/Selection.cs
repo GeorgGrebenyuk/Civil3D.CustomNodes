@@ -91,6 +91,12 @@ namespace Autodesk.Civil3D_CustomNodes
             }
             return selected_objects;
         }
+        /// <summary>
+        /// Get Object's handle as string by it's ObjectId
+        /// </summary>
+        /// <param name="doc_dyn"></param>
+        /// <param name="objects_id"></param>
+        /// <returns></returns>
         public static List<string> GetHandlesByObjectsId (Autodesk.AutoCAD.DynamoNodes.Document doc_dyn, List<ObjectId> objects_id)
         {
             Document doc = doc_dyn.AcDocument;
@@ -147,7 +153,7 @@ namespace Autodesk.Civil3D_CustomNodes
 
         public static OpenMode ModeForRead () { return OpenMode.ForRead; }
         /// <summary>
-        /// DANGEROUS!!!. Can create a FATAL or internal error. Write's mode (OpenMode.ForWrite) as tag of returning objects after closing transaction
+        /// Write's mode (OpenMode.ForWrite) as tag of returning objects after closing transaction
         /// </summary>
         /// <returns>OpenMode.ForWrite</returns>
         public static OpenMode ModeForWrite() { return OpenMode.ForWrite; }
