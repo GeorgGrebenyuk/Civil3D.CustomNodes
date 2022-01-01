@@ -46,6 +46,7 @@
     </Reference>
     <Reference Include="acdbmgdbrep">
       <HintPath>C:\Program Files\Autodesk\AutoCAD 2022\acdbmgdbrep.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="AcDynamoServices">
       <HintPath>C:\Program Files\Autodesk\AutoCAD 2022\C3D\Dynamo\AcDynamoServices.dll</HintPath>
