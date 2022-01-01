@@ -1,4 +1,4 @@
-#Guide of Dynamo's package "Civil3D.CustomNodes"
+# Guide of Dynamo's package "Civil3D.CustomNodes"
 ## About program's classes
 ### class __DataShortcuts__
 This class contains newest features in Civil3D update 2022.1:
@@ -31,7 +31,7 @@ This class contain's nodes to work with surface definition by linear objects in 
 
 - **void** _AddDataToSurfaces_: Adding data from PlanFeatures (character lines) to surfaces and also inser PointsCogoGrous to surfaces
 
-###class __ProjectProperties__
+### class __ProjectProperties__
 
 This class work with Civil3d's documents properties. There are no article for it.
 
