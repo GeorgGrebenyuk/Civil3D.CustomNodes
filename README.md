@@ -8,6 +8,6 @@ Current package suing latest API features (with Update 2022.1) and don't will wo
 
 __Note__: (not compulsory will getting and error, only as advice) -- install as space-delimeter in Windows a dot '.' (no comma).
 
-##About docs:
+## About docs:
 Read more at Russian at [my blog](https://zen.yandex.ru/id/5d0dba97ecd5cf00afaf2938) (or use Google-translator).
-Short description I putting into node's description (in package) and into repository's docs -- read more about [them here](/Wiki/docs_index.md).
+Short description I putting into node's description (in package) and into repository's docs -- read more about **[them here]**(/Wiki/docs_index.md).
