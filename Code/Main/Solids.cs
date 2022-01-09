@@ -235,5 +235,104 @@ namespace Autodesk.Civil3D_CustomNodes
                 
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="doc_dyn">Current document</param>
+        /// <param name="TopSurfacesNames">List with surfaces names as string (top surfaces)</param>
+        /// <param name="BottomSurfacesNames">List with surfaces names as string (bottom surfaces)</param>
+        /// <param name="PathToFolderSaveLog">File's path to save log file</param>
+        /// <param name="layer">AutoCAD's layer to save solids</param>
+        /// <param name="Id_separator">Separator in solid's identification variables</param>
+        /// <returns></returns>
+        [MultiReturn(new[] { "Solid's instances", "Solid's ids (by surfaces)" })]
+        public static Dictionary<string, object> BySurfaces (Autodesk.AutoCAD.DynamoNodes.Document doc_dyn, List<string> TopSurfacesNames, 
+            List <string> BottomSurfacesNames, string PathToFolderSaveLog, string layer = "0", string Id_separator = "___")
+        {
+            Document doc = doc_dyn.AcDocument;
+            CivilDocument c3d_doc = Autodesk.Civil.ApplicationServices.CivilApplication.ActiveDocument;
+            //Document doc = Application.DocumentManager.MdiActiveDocument;
+            Database db = doc.Database;
+
+            //Internal variables:
+            //For logging processes
+            string PathToSaveLog = PathToFolderSaveLog + $"\\SolidsBySurfaces_{Guid.NewGuid()}.log";
+            //File.Create(PathToSaveLog);
+            void SaveLog (string save_data)
+            {
+                
+                File.AppendAllText(PathToSaveLog, save_data);
+            }
+            //For out data
+            Dictionary<string, object> out_data = new Dictionary<string, object>();
+            List<ObjectId> solids_instances = new List<ObjectId>();
+            List<string> solids_ids = new List<string>();
+
+            ObjectIdCollection SurfaceIds = c3d_doc.GetSurfaceIds();
+            ObjectId GetSurfaceByName (string name)
+            {
+                foreach (ObjectId id in SurfaceIds)
+                {
+                    TinSurface oSurface = id.GetObject(OpenMode.ForRead) as TinSurface;
+                    if (oSurface.Name == name) return id;
+                }
+                return ObjectId.Null;
+            }
+
+            using (DocumentLock acDocLock = doc.LockDocument())
+            {
+                using (Transaction tr = db.TransactionManager.StartTransaction())
+                {
+                    for (int i1 = 0; i1 < TopSurfacesNames.Count; i1++)
+                    {
+                        string TopName = TopSurfacesNames[i1]; string BottomName = BottomSurfacesNames[i1];
+                        ObjectId top_surf_id = GetSurfaceByName(TopName);
+                        ObjectId bottom_surf_id = GetSurfaceByName(BottomName);
+                        string surfaces_id = TopName + Id_separator + BottomName;
+                        if (top_surf_id != ObjectId.Null && bottom_surf_id != ObjectId.Null)
+                        {
+                            TinSurface top_surf = top_surf_id.GetObject(OpenMode.ForRead) as TinSurface;
+                            TinSurface bottom_surf = bottom_surf_id.GetObject(OpenMode.ForRead) as TinSurface;
+                            //bool UseCurrentFile = string.IsNullOrEmpty(PathToSaveSolids);
+                            ObjectIdCollection out_solids = null;
+                            try
+                            {
+                                out_solids = top_surf.CreateSolidsAtSurface(bottom_surf_id, layer, 0);
+                                
+                            }
+                            catch
+                            {
+                                SaveLog($"Wrong operation CreateSolids for top = {TopName} and bottom = {BottomName}");
+                            }
+                            if (out_solids != null)
+                            {
+                                string ids = $"For {surfaces_id} was created nest solids (Handle): \n";
+                                foreach (ObjectId one_id in out_solids)
+                                {
+                                    string obj_handle = ((ObjectId)one_id).Handle.ToString();
+                                    ids += obj_handle + "\t";
+                                    solids_instances.Add(one_id);
+                                    solids_ids.Add(surfaces_id);
+                                }
+                                SaveLog(ids + "\n");
+                            }
+
+                        }
+                        else
+                        {
+                            SaveLog($"Invalid names for top = {TopName} and bottom = {BottomName}");
+                        }
+                    }
+                    tr.Commit();
+                }
+            }
+            return new Dictionary<string, object>
+            {
+                {"Solid's instances",solids_instances  },
+                {"Solid's ids (by surfaces)", solids_ids }
+            };
+
+        }
     }
 }
