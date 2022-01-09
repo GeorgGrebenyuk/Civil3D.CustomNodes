@@ -66,14 +66,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\DynamoRTree\Code\Main\DynamoRTree\DynamoRTree.csproj">
-      <Project>{cfb9fac0-959f-4459-bc72-f0728c92c259}</Project>
-      <Name>DynamoRTree</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\DynamoRTree\Code\RTree\RTree.csproj">
-      <Project>{4085ba67-60d7-4679-886e-457aaf37ec7b}</Project>
-      <Name>RTree</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Main\Civil3D_CustomNodes.csproj">
       <Project>{e9aff69f-ebd4-425a-b136-b13cf093f038}</Project>
       <Name>Civil3D_CustomNodes</Name>
