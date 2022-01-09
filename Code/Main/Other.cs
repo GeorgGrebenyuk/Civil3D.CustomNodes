@@ -46,15 +46,15 @@ namespace Autodesk.Civil3D_CustomNodes
         /// <param name="leader_text"></param>
         /// <param name="text_width"></param>
         /// <param name="text_height"></param>
-        public static void CreateMLeaderByPoint (ds.Point place_point, ds.Point leader_line_start, string leader_text, double TextRotation = 0d, double LandingGap = 0.04, double text_width = 5, double text_height = 0.2, double arrow_size = 0.5)
+        public static void CreateMLeaderByPoint (Autodesk.AutoCAD.DynamoNodes.Document doc_dyn, ds.Point place_point, ds.Point leader_line_start, string leader_text, double TextRotation = 0d, double LandingGap = 0.04, double text_width = 5, double text_height = 0.2, double arrow_size = 0.5)
         {
             /* Help docs
             *http://bushman-andrey.blogspot.com/2013/01/blog-post.html
             *https://adn-cis.org/kak-sozdat-multivyinosku-v-.net.html
             *https://adn-cis.org/forum/index.php?topic=10503.msg49118#msg49118
             */
-
-            Document doc = Application.DocumentManager.MdiActiveDocument;
+            Document doc = doc_dyn.AcDocument;
+            //Document doc = Application.DocumentManager.MdiActiveDocument;
             Database db = doc.Database;
             Editor ed = doc.Editor;
 
