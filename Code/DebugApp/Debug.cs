@@ -12,9 +12,7 @@ using Autodesk.AutoCAD.Geometry;
 using Autodesk.AutoCAD.Runtime;
 using Autodesk.Civil.DataShortcuts;
 using System.Globalization;
-using RTree;
 using Autodesk.Civil3D_CustomNodes;
-using DynamoRTree;
 
 namespace DebugApp
 {

@@ -115,13 +115,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\DynamoRTree\Code\Main\DynamoRTree\DynamoRTree.csproj">
-      <Project>{cfb9fac0-959f-4459-bc72-f0728c92c259}</Project>
-      <Name>DynamoRTree</Name>
-      <Private>False</Private>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>XCOPY "$(TargetDir)*" "C:\Users\Georg\AppData\Roaming\Autodesk\C3D 2022\Dynamo\2.12\packages\Civil3D.CustomNodes\bin\" /S /Y</PostBuildEvent>
