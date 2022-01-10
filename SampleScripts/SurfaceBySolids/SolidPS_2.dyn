@@ -1,0 +1,1191 @@
+{
+  "Uuid": "06b5a3d8-e9eb-4a32-9153-c47786da5862",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "SolidPS_2",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [
+    {
+      "Id": "12961dca78f8474eb658ef1328860d62",
+      "Name": "Путь к папке с логом",
+      "Type": "string",
+      "Value": "E:\\\\Temp",
+      "Description": "Creates a string.",
+      "SelectedIndex": 0
+    },
+    {
+      "Id": "482ca28b64d5492891bc1235bea75626",
+      "Name": "Разделитель имен поверхностей",
+      "Type": "string",
+      "Value": "___",
+      "Description": "Creates a string.",
+      "SelectedIndex": 0
+    },
+    {
+      "Id": "a84ab87084154bae931fcee223cf8866",
+      "Name": "Слой",
+      "Type": "string",
+      "Value": "0",
+      "Description": "Creates a string.",
+      "SelectedIndex": 0
+    }
+  ],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Autodesk.Civil.DynamoNodes.Surfaces, Civil3DNodesUI",
+      "NodeType": "ExtensionNode",
+      "Id": "703b9af1e0734343a8251ebb8d47f902",
+      "Inputs": [
+        {
+          "Id": "781a20f7601d4040a9d4fd781ed9d2c2",
+          "Name": "document",
+          "Description": "Document",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "a8a2ddb7f286447591188ea5e9a013d1",
+          "Name": "Surface[]",
+          "Description": "Surface[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select all surfaces in the drawing."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Autodesk.AutoCAD.DynamoNodes.Document.Current",
+      "Id": "fada8dabad644f76b4c1fd15bead3878",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "24e2a20cb6e04424bd63e244dadbe966",
+          "Name": "Document",
+          "Description": "Document",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get the current AutoCAD document.\n\nDocument.Current: Document"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "a.Name;",
+      "Id": "b442b88cd9ef4ad99cb7516df8e86c04",
+      "Inputs": [
+        {
+          "Id": "8f6615d3728b4854a134f4aa64abe2a8",
+          "Name": "a",
+          "Description": "a",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "4f144db8c9714d74a0d027ab5586ac78",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "[\"1\",\"2\",\"1\",\n\"1\",\"2\",\"3\"];",
+      "Id": "3b8011773f6a4578a9e323e49358ac2f",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "26a3c63781084e498b06a4ed55575cfa",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "[\"2\",\"3\",\"3\",\n\"N17\",\"N17\",\"N17\"];",
+      "Id": "27f84897b6ae4772a549d7e9a7a22bca",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "994f8560a4724afba9d7af5fbb6706c5",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"Solids_Preview\";\n\"Auxiliary names for 3D-solids\";\ntrue;",
+      "Id": "799fd28270f443f382bcd21439f09b30",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "7d2d8d6505544e369e9242f5e898058a",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "647514f125ef47f38ddb763101f84e64",
+          "Name": "",
+          "Description": "Value of expression at line 2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "ab41ed418dcd42ceb6d5ec7d7b58909f",
+          "Name": "",
+          "Description": "Value of expression at line 3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"Top_Bottom-Surface\";\n\"Identify surfaces\";",
+      "Id": "817b73dcf3b64310aeda6b24c75db059",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "316cc90758e84593ac8303efdb507a58",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "1ef3259e573f403f94218add3fc4900c",
+          "Name": "",
+          "Description": "Value of expression at line 2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Autodesk.Civil.DynamoNodes.GIS.ObjectData.OdTable.AddTable@string,Autodesk.Civil.DynamoNodes.GIS.ObjectData.OdField[],string,bool",
+      "Id": "9278625c207543929370ca4f12fdb6f0",
+      "Inputs": [
+        {
+          "Id": "ae94a29ff16a42139a233448a92b641c",
+          "Name": "name",
+          "Description": "The table name\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "2713f4cb172d4ccda26f540a25263a41",
+          "Name": "fields",
+          "Description": "The list of fields\n\nOdField[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "4d35df37da8d47e786b314020e14e787",
+          "Name": "description",
+          "Description": "The table description\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7bf73ce7ed0f42059818f714552cf7e7",
+          "Name": "isXDataRecords",
+          "Description": "True to set the table as XData Records\n\nbool",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "d62a4cead68a43c6a2f7bab5e91d0a24",
+          "Name": "OdTable",
+          "Description": "OdTable",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Adds a new table to the active project\n\nOdTable.AddTable (name: string, fields: OdField[], description: string, isXDataRecords: bool): OdTable"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Autodesk.Civil.DynamoNodes.GIS.ObjectData.OdField.Create@string,string,string",
+      "Id": "f3f70168e81f45609f7086302b6978d7",
+      "Inputs": [
+        {
+          "Id": "b122e6eba69a43d183c45c3b50704f30",
+          "Name": "name",
+          "Description": "The OdField name\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "dad160d13ccc4ec0b249b02351655e1e",
+          "Name": "dataType",
+          "Description": "The data type: Integer, Real, Character, Point\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "2c51aadded414cb1903055a524e2ce3c",
+          "Name": "description",
+          "Description": "The OdField description\n\nstring\nDefault value : \"\"",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "c5f8798204564295baadfda8dcc16c3d",
+          "Name": "OdField",
+          "Description": "OdField",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Creates an OdField\n\nOdField.Create (name: string, dataType: string, description: string = \"\"): OdField"
+    },
+    {
+      "ConcreteType": "Autodesk.Civil.DynamoNodes.GISUI.OdDataTypeDropDown, Autodesk.Civil3DToolkitUI",
+      "SelectedIndex": 2,
+      "SelectedString": "Character",
+      "NodeType": "ExtensionNode",
+      "Id": "7c074cb56d3e46f69eb509a9bac9b039",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "13e9c468920c4a5f83e74f888f0f84c3",
+          "Name": "DataType",
+          "Description": "OdField Data Type",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Returns a data type for OdFields"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Autodesk.Civil.DynamoNodes.GIS.ObjectData.OdRecord.Create@Autodesk.Civil.DynamoNodes.GIS.ObjectData.OdTable,Autodesk.AutoCAD.DynamoNodes.Object",
+      "Id": "1f00ff720963467da1e6b0f9f6baee91",
+      "Inputs": [
+        {
+          "Id": "fe280233d6034520a529520f0b8a97c7",
+          "Name": "table",
+          "Description": "The table\n\nOdTable",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "bac7436e330c4d46a0c9149c0f7c4312",
+          "Name": "obj",
+          "Description": "The object\n\nObject",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "4df73c1d7a344447b0dbdbd6b0f10e12",
+          "Name": "OdRecord",
+          "Description": "OdRecord",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Adds a record of the drawing object to the table\n\nOdRecord.Create (table: OdTable, obj: Object): OdRecord"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Autodesk.Civil.DynamoNodes.GIS.ObjectData.OdRecord.SetValueByName@string,var",
+      "Id": "36d6a189b2984297b51aaeb49ebf4434",
+      "Inputs": [
+        {
+          "Id": "87c3f5f196e34a98bffd222d87050c2a",
+          "Name": "odRecord",
+          "Description": "Autodesk.Civil.DynamoNodes.GIS.ObjectData.OdRecord",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "8d512232dcf64355bc49dce667bdb785",
+          "Name": "name",
+          "Description": "The field name\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "5ad79c8f553a4af5ac4eccee414c726f",
+          "Name": "value",
+          "Description": "The new value\n\nvar",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "8712ded975c8478ba139dbbb4f82f051",
+          "Name": "OdRecord",
+          "Description": "OdRecord",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Sets the object record value by name\n\nOdRecord.SetValueByName (name: string, value: var): OdRecord"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Autodesk.Civil3D_CustomNodes.Solids.BySurfaces@Autodesk.AutoCAD.DynamoNodes.Document,string[],string[],string,string,string",
+      "Id": "ad9d853b30ff4ac69404f76de8da6622",
+      "Inputs": [
+        {
+          "Id": "10ac69aa69af44d1bbf028780dda4844",
+          "Name": "doc_dyn",
+          "Description": "Current document\n\nDocument",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "4be19a0304d140eb9aefb0979459c570",
+          "Name": "TopSurfacesNames",
+          "Description": "List with surfaces names as string (top surfaces)\n\nstring[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "fb203f462ff84120b7071a292c3e8105",
+          "Name": "BottomSurfacesNames",
+          "Description": "List with surfaces names as string (bottom surfaces)\n\nstring[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "3dd3771cbb4240cf9af8bab42d071470",
+          "Name": "PathToFolderSaveLog",
+          "Description": "File's path to save log file\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "3b43c24561ed46768635c1f535e0a463",
+          "Name": "layer",
+          "Description": "AutoCAD's layer to save solids\n\nstring\nDefault value : \"0\"",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b723f07417a04d72a718992c3650d895",
+          "Name": "Id_separator",
+          "Description": "Separator in solid's identification variables\n\nstring\nDefault value : \"___\"",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "4050905387734680a815045b910e3273",
+          "Name": "Solid's instances",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "05c7d69f44f64607b691e121fc96389a",
+          "Name": "Solid's ids (by surfaces)",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Solids.BySurfaces (doc_dyn: Document, TopSurfacesNames: string[], BottomSurfacesNames: string[], PathToFolderSaveLog: string, layer: string = \"0\", Id_separator: string = \"___\"): var[]..[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Autodesk.AutoCAD.DynamoNodes.Document.Current",
+      "Id": "31ba2e4249284d35907c672b808c2efc",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "fc64a9fee91e4570aef3885b06770a92",
+          "Name": "Document",
+          "Description": "Document",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get the current AutoCAD document.\n\nDocument.Current: Document"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Autodesk.Civil3D_CustomNodes.Selection.GetAcadObjectsByObjectsId@Autodesk.AutoCAD.DynamoNodes.Document,var[],Autodesk.AutoCAD.DatabaseServices.OpenMode",
+      "Id": "ed4a7627b6a94d5594fa483f8aa5ae43",
+      "Inputs": [
+        {
+          "Id": "c4321cf967474ce2ae8ad586222a3efb",
+          "Name": "doc_dyn",
+          "Description": "Document",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "ef31340e853b4d81b18e7865a808e893",
+          "Name": "objects_id",
+          "Description": "List with ObjectId\n\nvar[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7caaae444d48467b81b11f2791819e1a",
+          "Name": "mode",
+          "Description": "OpenMode (read or write) -- actions after returning objects\n\nOpenMode",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "30b7f43018684b89a31b3c18120fe1d0",
+          "Name": "Object[]",
+          "Description": "Autodesk.AutoCAD.DatabaseServices.DBObject list",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "DANGEROUS!!!. Can create a FATAL or internal error. Get Autodesk.AutoCAD.DatabaseServices.DBObject by ObjectId\n\nSelection.GetAcadObjectsByObjectsId (doc_dyn: Document, objects_id: var[], mode: OpenMode): Object[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Autodesk.Civil3D_CustomNodes.Selection.ModeForWrite",
+      "Id": "40da3e688ea04a72a81b6737e39feded",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "05ea7b39290d4ef196ce5bb62f2e4dd2",
+          "Name": "OpenMode",
+          "Description": "OpenMode.ForWrite",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Write's mode (OpenMode.ForWrite) as tag of returning objects after closing transaction\n\nSelection.ModeForWrite ( ): OpenMode"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Autodesk.AutoCAD.DynamoNodes.Document.Current",
+      "Id": "098f65ccd046491691e03c99289f7f24",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "5105582677dd413198bd158c91a983df",
+          "Name": "Document",
+          "Description": "Document",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get the current AutoCAD document.\n\nDocument.Current: Document"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "E:\\\\Temp",
+      "Id": "12961dca78f8474eb658ef1328860d62",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "abe96639ec504a0e97895a60c03437bc",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "___",
+      "Id": "482ca28b64d5492891bc1235bea75626",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "3b4338d1ff5d42b29fc307b94e1e42fc",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "0",
+      "Id": "a84ab87084154bae931fcee223cf8866",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "5c5c0fe353ff42709d58f7b50e8c35bb",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "a8a2ddb7f286447591188ea5e9a013d1",
+      "End": "8f6615d3728b4854a134f4aa64abe2a8",
+      "Id": "548db3a3dec94632b1cf78672ffaae23"
+    },
+    {
+      "Start": "24e2a20cb6e04424bd63e244dadbe966",
+      "End": "781a20f7601d4040a9d4fd781ed9d2c2",
+      "Id": "c28dd00170714310994a317aaf879f08"
+    },
+    {
+      "Start": "26a3c63781084e498b06a4ed55575cfa",
+      "End": "4be19a0304d140eb9aefb0979459c570",
+      "Id": "4fc179974c6e47afba730cc5c32b00c6"
+    },
+    {
+      "Start": "994f8560a4724afba9d7af5fbb6706c5",
+      "End": "fb203f462ff84120b7071a292c3e8105",
+      "Id": "0bc238f6c2d34191ab94d8b85a8e1961"
+    },
+    {
+      "Start": "7d2d8d6505544e369e9242f5e898058a",
+      "End": "ae94a29ff16a42139a233448a92b641c",
+      "Id": "2f611b3fd83a4923b5758c69de84db82"
+    },
+    {
+      "Start": "647514f125ef47f38ddb763101f84e64",
+      "End": "4d35df37da8d47e786b314020e14e787",
+      "Id": "a5571a62cea6404682440d8ca0072f3b"
+    },
+    {
+      "Start": "ab41ed418dcd42ceb6d5ec7d7b58909f",
+      "End": "7bf73ce7ed0f42059818f714552cf7e7",
+      "Id": "7368b7336f1f4f668a7c6aa3d47e5b92"
+    },
+    {
+      "Start": "316cc90758e84593ac8303efdb507a58",
+      "End": "b122e6eba69a43d183c45c3b50704f30",
+      "Id": "b1c6c2752a514464a8241fb8ae1926be"
+    },
+    {
+      "Start": "316cc90758e84593ac8303efdb507a58",
+      "End": "8d512232dcf64355bc49dce667bdb785",
+      "Id": "b8da096af7c0404a912095cefe64f937"
+    },
+    {
+      "Start": "1ef3259e573f403f94218add3fc4900c",
+      "End": "2c51aadded414cb1903055a524e2ce3c",
+      "Id": "43d8b642097b4524913a9a72bf5bf8e0"
+    },
+    {
+      "Start": "d62a4cead68a43c6a2f7bab5e91d0a24",
+      "End": "fe280233d6034520a529520f0b8a97c7",
+      "Id": "0b5006e0da9447078f0a4580615ac857"
+    },
+    {
+      "Start": "c5f8798204564295baadfda8dcc16c3d",
+      "End": "2713f4cb172d4ccda26f540a25263a41",
+      "Id": "80bd995ee8ac4663a6affae02fa75e16"
+    },
+    {
+      "Start": "13e9c468920c4a5f83e74f888f0f84c3",
+      "End": "dad160d13ccc4ec0b249b02351655e1e",
+      "Id": "24cbdf4e841b41a486d4a4d05e0950ba"
+    },
+    {
+      "Start": "4df73c1d7a344447b0dbdbd6b0f10e12",
+      "End": "87c3f5f196e34a98bffd222d87050c2a",
+      "Id": "3931bee8a0e24f3aaf394831e5e40ae9"
+    },
+    {
+      "Start": "4050905387734680a815045b910e3273",
+      "End": "ef31340e853b4d81b18e7865a808e893",
+      "Id": "584d4c0b6ebb492c8b758934f432d569"
+    },
+    {
+      "Start": "05c7d69f44f64607b691e121fc96389a",
+      "End": "5ad79c8f553a4af5ac4eccee414c726f",
+      "Id": "cc37f9bf9e3548a98863c1856215eb75"
+    },
+    {
+      "Start": "fc64a9fee91e4570aef3885b06770a92",
+      "End": "10ac69aa69af44d1bbf028780dda4844",
+      "Id": "8d71354936cf4299845411a8532f1fa8"
+    },
+    {
+      "Start": "30b7f43018684b89a31b3c18120fe1d0",
+      "End": "bac7436e330c4d46a0c9149c0f7c4312",
+      "Id": "bfabded1bcd0417183277c1b67e6cc81"
+    },
+    {
+      "Start": "05ea7b39290d4ef196ce5bb62f2e4dd2",
+      "End": "7caaae444d48467b81b11f2791819e1a",
+      "Id": "fd7c5c88f0174c7aaac561438b8c9946"
+    },
+    {
+      "Start": "5105582677dd413198bd158c91a983df",
+      "End": "c4321cf967474ce2ae8ad586222a3efb",
+      "Id": "70b8f4135f334983bcdc79c57b9a8ba7"
+    },
+    {
+      "Start": "abe96639ec504a0e97895a60c03437bc",
+      "End": "3dd3771cbb4240cf9af8bab42d071470",
+      "Id": "fdbbd728449442aebfc709908547ff86"
+    },
+    {
+      "Start": "3b4338d1ff5d42b29fc307b94e1e42fc",
+      "End": "b723f07417a04d72a718992c3650d895",
+      "Id": "cc1933983b154990b7c7f43bbdb4fc5a"
+    },
+    {
+      "Start": "5c5c0fe353ff42709d58f7b50e8c35bb",
+      "End": "3b43c24561ed46768635c1f535e0a463",
+      "Id": "bc31f06f02d74bfca30ecabb2ad9bd15"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [
+    {
+      "Name": "Civil3DToolkit",
+      "Version": "1.1.30",
+      "ReferenceType": "Package",
+      "Nodes": [
+        "9278625c207543929370ca4f12fdb6f0",
+        "f3f70168e81f45609f7086302b6978d7",
+        "7c074cb56d3e46f69eb509a9bac9b039",
+        "1f00ff720963467da1e6b0f9f6baee91",
+        "36d6a189b2984297b51aaeb49ebf4434"
+      ]
+    },
+    {
+      "Name": "Civil3D.CustomNodes",
+      "Version": "1.0.11",
+      "ReferenceType": "Package",
+      "Nodes": [
+        "ad9d853b30ff4ac69404f76de8da6622",
+        "ed4a7627b6a94d5594fa483f8aa5ae43",
+        "40da3e688ea04a72a81b6737e39feded"
+      ]
+    }
+  ],
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "2.12",
+      "Data": {}
+    }
+  ],
+  "Author": "None provided",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [
+    {
+      "NodeId": "ed4a7627-b6a9-4d55-94fa-483f8aa5ae43",
+      "Binding": {
+        "GetAcadObjectsByObjectsId_InClassDecl-1_InFunctionScope-1_Instance0_ed4a7627-b6a9-4d55-94fa-483f8aa5ae43": "PFNPQVAtRU5WOkVudmVsb3BlIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiIHhtbG5zOnhzZD0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEiIHhtbG5zOlNPQVAtRU5DPSJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy9zb2FwL2VuY29kaW5nLyIgeG1sbnM6U09BUC1FTlY9Imh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3NvYXAvZW52ZWxvcGUvIiB4bWxuczpjbHI9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vc29hcC9lbmNvZGluZy9jbHIvMS4wIiBTT0FQLUVOVjplbmNvZGluZ1N0eWxlPSJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy9zb2FwL2VuY29kaW5nLyI+DQo8U09BUC1FTlY6Qm9keT4NCjxhMTpDYWxsU2l0ZV94MDAyQl9UcmFjZVNlcmlhbGlzZXJIZWxwZXIgaWQ9InJlZi0xIiB4bWxuczphMT0iaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS9jbHIvbnNhc3NlbS9Qcm90b0NvcmUvUHJvdG9Db3JlJTJDJTIwVmVyc2lvbiUzRDIuMTIuMC41NjUwJTJDJTIwQ3VsdHVyZSUzRG5ldXRyYWwlMkMlMjBQdWJsaWNLZXlUb2tlbiUzRG51bGwiPg0KPE51bWJlck9mRWxlbWVudHM+MTwvTnVtYmVyT2ZFbGVtZW50cz4NCjxCYXNlLTBfSGFzRGF0YT50cnVlPC9CYXNlLTBfSGFzRGF0YT4NCjxCYXNlLTBfRGF0YSBpZD0icmVmLTMiPlBGTlBRVkF0UlU1V09rVnVkbVZzYjNCbElIaHRiRzV6T25oemFUMGlhSFIwY0RvdkwzZDNkeTUzTXk1dmNtY3ZNakF3TVM5WVRVeFRZMmhsYldFdGFXNXpkR0Z1WTJVaUlIaHRiRzV6T25oelpEMGlhSFIwY0RvdkwzZDNkeTUzTXk1dmNtY3ZNakF3TVM5WVRVeFRZMmhsYldFaUlIaHRiRzV6T2xOUFFWQXRSVTVEUFNKb2RIUndPaTh2YzJOb1pXMWhjeTU0Yld4emIyRndMbTl5Wnk5emIyRndMMlZ1WTI5a2FXNW5MeUlnZUcxc2JuTTZVMDlCVUMxRlRsWTlJbWgwZEhBNkx5OXpZMmhsYldGekxuaHRiSE52WVhBdWIzSm5MM052WVhBdlpXNTJaV3h2Y0dVdklpQjRiV3h1Y3pwamJISTlJbWgwZEhBNkx5OXpZMmhsYldGekxtMXBZM0p2YzI5bWRDNWpiMjB2YzI5aGNDOWxibU52WkdsdVp5OWpiSEl2TVM0d0lpQlRUMEZRTFVWT1ZqcGxibU52WkdsdVoxTjBlV3hsUFNKb2RIUndPaTh2YzJOb1pXMWhjeTU0Yld4emIyRndMbTl5Wnk5emIyRndMMlZ1WTI5a2FXNW5MeUkrRFFvOFUwOUJVQzFGVGxZNlFtOWtlVDROQ2p4aE1UcFRaWEpwWVd4cGVtRmliR1ZJWVc1a2JHVWdhV1E5SW5KbFppMHhJaUI0Yld4dWN6cGhNVDBpYUhSMGNEb3ZMM05qYUdWdFlYTXViV2xqY205emIyWjBMbU52YlM5amJISXZibk5oYzNObGJTOUJkWFJ2WkdWemF5NUJkWFJ2UTBGRUxrUjVibUZ0YjBGd2NDNVRaWEoyYVdObGN5OUJZMFI1Ym1GdGIxTmxjblpwWTJWekpUSkRKVEl3Vm1WeWMybHZiaVV6UkRFekxqUXVNVE16T1M0d0pUSkRKVEl3UTNWc2RIVnlaU1V6Ukc1bGRYUnlZV3dsTWtNbE1qQlFkV0pzYVdOTFpYbFViMnRsYmlVelJHNTFiR3dpUGcwS1BITjBjbWx1WjBsRUlHbGtQU0p5WldZdE15SStPRFl3T1R3dmMzUnlhVzVuU1VRK0RRbzhMMkV4T2xObGNtbGhiR2w2WVdKc1pVaGhibVJzWlQ0TkNqd3ZVMDlCVUMxRlRsWTZRbTlrZVQ0TkNqd3ZVMDlCVUMxRlRsWTZSVzUyWld4dmNHVStEUW89PC9CYXNlLTBfRGF0YT4NCjxCYXNlLTBfSGFzTmVzdGVkRGF0YT5mYWxzZTwvQmFzZS0wX0hhc05lc3RlZERhdGE+DQo8L2ExOkNhbGxTaXRlX3gwMDJCX1RyYWNlU2VyaWFsaXNlckhlbHBlcj4NCjwvU09BUC1FTlY6Qm9keT4NCjwvU09BUC1FTlY6RW52ZWxvcGU+DQo="
+      }
+    }
+  ],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.12.0.5650",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Surfaces",
+        "Id": "703b9af1e0734343a8251ebb8d47f902",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 450.75736866156694,
+        "Y": 395.05995833663189
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Document.Current",
+        "Id": "fada8dabad644f76b4c1fd15bead3878",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 210.78002203053336,
+        "Y": 318.56481083345295
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Surface's names",
+        "Id": "b442b88cd9ef4ad99cb7516df8e86c04",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 724.16999018358274,
+        "Y": 402.02112159446074
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "surface top _list",
+        "Id": "3b8011773f6a4578a9e323e49358ac2f",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 975.38274729829232,
+        "Y": 133.22380222467206
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "surface base _list",
+        "Id": "27f84897b6ae4772a549d7e9a7a22bca",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 954.10145592390359,
+        "Y": 281.20662260063722
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "799fd28270f443f382bcd21439f09b30",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 783.75835425190621,
+        "Y": -270.539045254656
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "817b73dcf3b64310aeda6b24c75db059",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 491.91754349240205,
+        "Y": -105.27970527322105
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "OdTable.AddTable",
+        "Id": "9278625c207543929370ca4f12fdb6f0",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1186.3836017770645,
+        "Y": -284.02298018111946
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "OdField.Create",
+        "Id": "f3f70168e81f45609f7086302b6978d7",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 874.9227528510778,
+        "Y": -129.47233166102768
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "OdField Data Types",
+        "Id": "7c074cb56d3e46f69eb509a9bac9b039",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 545.05579392306265,
+        "Y": -6.5462541956391647
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "OdRecord.Create",
+        "Id": "1f00ff720963467da1e6b0f9f6baee91",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 2658.8399115469388,
+        "Y": 118.8855671625015
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "OdRecord.SetValueByName",
+        "Id": "36d6a189b2984297b51aaeb49ebf4434",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 2912.8360394797187,
+        "Y": 269.64638063084112
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Solids.BySurfaces",
+        "Id": "ad9d853b30ff4ac69404f76de8da6622",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1580.67834472641,
+        "Y": 227.69232709385216
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Document.Current",
+        "Id": "31ba2e4249284d35907c672b808c2efc",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1226.4833791613971,
+        "Y": 165.84986397340367
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Selection.GetAcadObjectsByObjectsId",
+        "Id": "ed4a7627b6a94d5594fa483f8aa5ae43",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 2321.6187154362178,
+        "Y": 210.77156501272725
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Selection.ModeForWrite",
+        "Id": "40da3e688ea04a72a81b6737e39feded",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 2075.6867757930572,
+        "Y": 319.15206681817239
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Document.Current",
+        "Id": "098f65ccd046491691e03c99289f7f24",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 2058.0993189240812,
+        "Y": 125.24134396526659
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Путь к папке с логом",
+        "Id": "12961dca78f8474eb658ef1328860d62",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1228.9668961383177,
+        "Y": 252.29981881846186
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Разделитель имен поверхностей",
+        "Id": "482ca28b64d5492891bc1235bea75626",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1227.8942155178272,
+        "Y": 374.58540955434097
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Слой",
+        "Id": "a84ab87084154bae931fcee223cf8866",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1231.1122573792982,
+        "Y": 313.4426141864015
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "5f921349045940ad86716e67a3b42d69",
+        "Title": "Выборка поверхностей (между чем формировать тела)",
+        "Nodes": [
+          "703b9af1e0734343a8251ebb8d47f902",
+          "fada8dabad644f76b4c1fd15bead3878",
+          "b442b88cd9ef4ad99cb7516df8e86c04",
+          "3b8011773f6a4578a9e323e49358ac2f",
+          "27f84897b6ae4772a549d7e9a7a22bca"
+        ],
+        "Left": 200.78002203053336,
+        "Top": 80.223802224672056,
+        "Width": 971.32143389337023,
+        "Height": 414.79731936978868,
+        "FontSize": 36.0,
+        "InitialTop": 133.22380222467206,
+        "InitialHeight": 413.79731936978868,
+        "TextblockHeight": 43.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "3ef6178f4be6440ba6fcc66202d0f0f3",
+        "Title": "Вспомогательная таблица ObjectData (для идентификации солидов)",
+        "Nodes": [
+          "799fd28270f443f382bcd21439f09b30",
+          "817b73dcf3b64310aeda6b24c75db059"
+        ],
+        "Left": 481.91754349240205,
+        "Top": -366.539045254656,
+        "Width": 626.84081075950417,
+        "Height": 364.25933998143495,
+        "FontSize": 36.0,
+        "InitialTop": -270.539045254656,
+        "InitialHeight": 313.01706058461411,
+        "TextblockHeight": 86.0,
+        "Background": "#FFFFAA45"
+      },
+      {
+        "Id": "7e742951ef464cccad3574f1682507c6",
+        "Title": "Получение объектов",
+        "Nodes": [
+          "ed4a7627b6a94d5594fa483f8aa5ae43",
+          "40da3e688ea04a72a81b6737e39feded",
+          "098f65ccd046491691e03c99289f7f24"
+        ],
+        "Left": 2048.0993189240812,
+        "Top": 72.2413439652666,
+        "Width": 535.51939651213661,
+        "Height": 339.91072285290579,
+        "FontSize": 36.0,
+        "InitialTop": 125.24134396526659,
+        "InitialHeight": 338.91072285290579,
+        "TextblockHeight": 43.0,
+        "Background": "#FF48B9FF"
+      },
+      {
+        "Id": "d60a85810b5a4353898d2c15be1adb63",
+        "Title": "Присвоение объектам характеристик",
+        "Nodes": [
+          "1f00ff720963467da1e6b0f9f6baee91",
+          "36d6a189b2984297b51aaeb49ebf4434"
+        ],
+        "Left": 2648.8399115469388,
+        "Top": 22.885567162501502,
+        "Width": 511.99612793277993,
+        "Height": 391.76081346833962,
+        "FontSize": 36.0,
+        "InitialTop": 118.8855671625015,
+        "InitialHeight": 295.76081346833962,
+        "TextblockHeight": 86.0,
+        "Background": "#FF48B9FF"
+      },
+      {
+        "Id": "b455f497a8834a3abc33be829ad247b8",
+        "Title": "Параметры для запуска процесса формирования тел",
+        "Nodes": [
+          "ad9d853b30ff4ac69404f76de8da6622",
+          "31ba2e4249284d35907c672b808c2efc",
+          "12961dca78f8474eb658ef1328860d62",
+          "482ca28b64d5492891bc1235bea75626",
+          "a84ab87084154bae931fcee223cf8866"
+        ],
+        "Left": 1216.4833791613971,
+        "Top": 69.849863973403671,
+        "Width": 772.19496556501281,
+        "Height": 380.84246312044849,
+        "FontSize": 36.0,
+        "InitialTop": 165.84986397340367,
+        "InitialHeight": 353.7355455809373,
+        "TextblockHeight": 86.0,
+        "Background": "#FFFFAA45"
+      },
+      {
+        "Id": "4b8b398ea6d04af7923221c82190596b",
+        "Title": "Назначение идентификатора телу",
+        "Nodes": [],
+        "Left": 2419.0587341472838,
+        "Top": -1201.6737512847956,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": -150.05777059952703,
+    "Y": 319.68938258319486,
+    "Zoom": 0.77559533227708677
+  }
+}
