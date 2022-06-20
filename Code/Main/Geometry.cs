@@ -16,7 +16,6 @@ using Autodesk.AutoCAD.EditorInput;
 using Autodesk.AutoCAD.Geometry;
 using Autodesk.AutoCAD.Runtime;
 using Autodesk.Civil.DataShortcuts;
-using static Autodesk.Civil.DataShortcuts.DataShortcuts.DataShortcutManager;
 using Autodesk.DesignScript.Runtime;
 using System.Globalization;
 using Autodesk.AutoCAD.BoundaryRepresentation;

@@ -64,10 +64,6 @@
       <HintPath>C:\Program Files\Autodesk\AutoCAD 2022\AecBaseMgd.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="AeccDataShortcutMgd">
-      <HintPath>C:\Program Files\Autodesk\AutoCAD 2022\C3D\AeccDataShortcutMgd.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="AeccDbMgd">
       <HintPath>C:\Program Files\Autodesk\AutoCAD 2022\C3D\AeccDbMgd.dll</HintPath>
       <Private>False</Private>
@@ -102,7 +98,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataShortcuts.cs" />
     <Compile Include="Geometry.cs" />
     <Compile Include="Other.cs" />
     <Compile Include="Selection.cs" />

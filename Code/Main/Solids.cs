@@ -16,7 +16,6 @@ using Autodesk.AutoCAD.EditorInput;
 using Autodesk.AutoCAD.Geometry;
 using Autodesk.AutoCAD.Runtime;
 using Autodesk.Civil.DataShortcuts;
-using static Autodesk.Civil.DataShortcuts.DataShortcuts.DataShortcutManager;
 using Autodesk.DesignScript.Runtime;
 using System.Globalization;
 using Autodesk.AutoCAD.BoundaryRepresentation;
@@ -59,7 +58,8 @@ namespace Autodesk.Civil3D_CustomNodes
         /// <param name="FaceType">Count edges in face; as default =3</param>
         /// <returns>Dictionary with faces's centroid coordinates (Dynamo point) and identificators (solid's handle and face's id)</returns>
         [MultiReturn(new[] { "FacesId", "FacesCentroid" })]
-        public static Dictionary<string, object> GetSolid3dFacesCentroids (Autodesk.AutoCAD.DynamoNodes.Document doc_dyn, List<ObjectId> solids_id_list, int FaceType = 3) //List <Dictionary<string, object>>
+        public static Dictionary<string, object> GetSolid3dFacesCentroids (Autodesk.AutoCAD.DynamoNodes.Document doc_dyn, 
+            List<ObjectId> solids_id_list, int FaceType = 3) //List <Dictionary<string, object>>
         {
 
             //Document doc = Application.DocumentManager.MdiActiveDocument;
@@ -334,5 +334,51 @@ namespace Autodesk.Civil3D_CustomNodes
             };
 
         }
+
+        /// <summary>
+        /// Check where is point by solid3d
+        /// </summary>
+        /// <param name="doc_dyn"></param>
+        /// <param name="solid_id">ObjectId of solid</param>
+        /// <param name="point">Dynamo points</param>
+        /// <returns>-1 if error; 0 if inside; 1 if outside; 2 if on boundary</returns>
+        public static int IsSolidContainsPoint (Autodesk.AutoCAD.DynamoNodes.Document doc_dyn, ObjectId solid_id, DynGeom.Point point)
+        {
+            Document doc = doc_dyn.AcDocument;
+            Database db = doc.Database;
+            int point_placement = -1;
+            Point3d point_cad = new Point3d(point.X, point.Y, point.Z);
+            using (DocumentLock acDocLock = doc.LockDocument())
+            {
+                using (Transaction tr = db.TransactionManager.StartTransaction())
+                {
+
+                    FullSubentityPath path = new FullSubentityPath(new ObjectId[1] { solid_id }, new SubentityId(SubentityType.Null, IntPtr.Zero));
+                    using (Brep brep = new Brep(path))
+                    {
+                        PointContainment to_return;
+                        brep.GetPointContainment(point_cad, out to_return);
+
+                        switch (to_return)
+                        {
+                            case PointContainment.Inside:
+                                point_placement = 0;
+                                break;
+                            case PointContainment.OnBoundary:
+                                point_placement = 2;
+                                break;
+                            case PointContainment.Outside:
+                                point_placement = 1;
+                                break;
+                        }
+                        
+                    }
+
+                    tr.Commit();
+                }
+            }
+            return point_placement;
+        }
+        
     }
 }

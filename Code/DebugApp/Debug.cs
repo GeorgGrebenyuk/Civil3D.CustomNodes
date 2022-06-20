@@ -10,7 +10,6 @@ using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.EditorInput;
 using Autodesk.AutoCAD.Geometry;
 using Autodesk.AutoCAD.Runtime;
-using Autodesk.Civil.DataShortcuts;
 using System.Globalization;
 using Autodesk.Civil3D_CustomNodes;
 
