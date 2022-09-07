@@ -143,5 +143,77 @@ namespace Autodesk.Civil3D_CustomNodes
                 { "dirt",dirt}, { "wood",wood}, { "water",water}, { "wetland",wetland}, { "scrub",scrub}
             };
         }
+
+        public static ObjectId GetCentroidOfHatch(Autodesk.AutoCAD.DynamoNodes.Document doc_dyn,
+            Autodesk.AutoCAD.DynamoNodes.Object hatch_object)
+        {
+            Document ac_doc = doc_dyn.AcDocument;
+            Database ac_db = ac_doc.Database;
+
+            ObjectId centroid_point = ObjectId.Null;
+            
+
+            using (DocumentLock acLckDoc = ac_doc.LockDocument())
+            {
+                using (Transaction acTrans = ac_db.TransactionManager.StartTransaction())
+                {
+                    // Open the Block table for read
+                    BlockTable acBlkTbl;
+                    acBlkTbl = acTrans.GetObject(ac_db.BlockTableId,
+                                                       OpenMode.ForRead) as BlockTable;
+                    // Open the Block table record Model space for write
+                    BlockTableRecord acBlkTblRec;
+                    acBlkTblRec = acTrans.GetObject(acBlkTbl[BlockTableRecord.ModelSpace],
+                                                          OpenMode.ForWrite) as BlockTableRecord;
+
+                    long obj_handle = Convert.ToInt64(hatch_object.Handle, 16);
+                    ObjectId id = ac_db.GetObjectId(false, new Handle(obj_handle), 0);
+                    
+                    Hatch hatch_one = acTrans.GetObject(id, OpenMode.ForRead) as Hatch;
+                    List<Point2d> points_all = new List<Point2d>();
+                    for (int i2 = 0; i2 < hatch_one.NumberOfLoops; i2++)
+                    {
+                        HatchLoop loop = hatch_one.GetLoopAt(i2);
+                        if (loop.IsPolyline)
+                        {
+                            var bulges = loop.Polyline;
+                            for (int j = 0; j < bulges.Count; j++)
+                            {
+                                var vertex = bulges[j];
+                                Point2d p = new Point2d(vertex.Vertex.X, vertex.Vertex.Y);
+                                points_all.Add(p);
+                            }
+                        }
+                        else
+                        {
+                            Curve2dCollection curbes_h = loop.Curves;
+                            foreach (Curve2d c_h in curbes_h)
+                            {
+
+                                int param_length = Convert.ToInt32(Math.Abs(c_h.GetParameterOf(c_h.StartPoint) - c_h.GetParameterOf(c_h.EndPoint)) * 10.0);
+                                for (int i = 0; i < param_length; i++)
+                                {
+                                    Point2d point_on_curve = c_h.EvaluatePoint(i * 1.0);
+                                    points_all.Add(point_on_curve);
+                                }
+                            }
+                        }
+                    }
+
+                    double x = points_all.Select(a => a.X).Sum()/ points_all.Count();
+                    double y = points_all.Select(a => a.Y).Sum() / points_all.Count();
+
+                    DBPoint point = new DBPoint(new Point3d(x, y, 0));
+
+                    acBlkTblRec.AppendEntity(point);
+                    acTrans.AddNewlyCreatedDBObject(point, true);
+                    centroid_point = point.Id;
+                    acTrans.Commit();
+                }
+
+            }
+            return centroid_point;
+            
+        }
     }
 }
